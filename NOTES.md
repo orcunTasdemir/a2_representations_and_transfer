@@ -37,10 +37,28 @@ Append one section per work block. Read this first when switching machines.
   live hypothesis. Data shortage vs model-form limit (variance vs bias) to be
   settled from the table, not asserted.
 
-### Open — decisions that are mine
+### Decisions made (mine)
 
-1. Seed passed to the two frozen rows' ridge (brief only states it for the
-   other three rows; `seed=replicate` would match them).
-2. Write down expectations before running anything, incl. the incumbent at
-   n=50 vs n=1000 in light of the Process Engineering paragraph.
-3. Whether to put this folder under git (A1 was, for syncing two machines).
+- Frozen rows' ridge uses `seed=replicate`, matching the other rows.
+- Folder under git, private repo
+  https://github.com/orcunTasdemir/a2_representations_and_transfer, as in A1,
+  so I can work on the Windows PC too. Data and handouts tracked (repo is
+  private; `data/` is excluded from the submission zip, not from the repo).
+
+### Numbers produced, with provenance
+
+Inline `python -c` under `.venv`, using `kestrel.load` only. To be reproduced
+by the analysis script.
+
+| Quantity | Value |
+|---|---|
+| Train mean strength (n=2000) | 32.81 MPa, sd 13.43 |
+| var(y) on dev | 188.8 MPa² |
+| Predict-the-train-mean, dev MSE | 188.9 MPa² (RMSE 13.74 MPa) |
+
+### Open
+
+1. Fill `expectations.md` before Exhibit 1 is run. Then build `analysis/`.
+2. Baseline detail for the memo: the mean of all 2,000 train labels was used
+   above; the mean of only the n drawn labels is the stricter "do-nothing at
+   budget n". Mine to choose; difference expected to be small.
