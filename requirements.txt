@@ -1,0 +1,20 @@
+# IDS 575 Assignment 2 - pinned environment
+#
+# Setup (Windows):
+#   python -m venv .venv
+#   .venv\Scripts\activate
+#   pip install -r requirements.txt
+#
+# Setup (macOS):
+#   python3.11 -m venv .venv
+#   source .venv/bin/activate
+#   pip install -r requirements.txt
+#
+# Same pins as Assignment 1 (built there on Python 3.11.9).
+# Versions are pinned so numbers reproduce on both machines.
+
+numpy==2.4.6
+scipy==1.17.1
+pandas==3.0.5
+scikit-learn==1.9.1
+matplotlib==3.11.2

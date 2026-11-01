@@ -1,0 +1,7 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Session transcripts are the record. Keep them byte-exact across machines,
+# rather than letting text=auto rewrite their line endings.
+*.jsonl -text
+*.gz binary
