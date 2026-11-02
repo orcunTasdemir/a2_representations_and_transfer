@@ -62,3 +62,27 @@ by the analysis script.
 2. Baseline detail for the memo: the mean of all 2,000 train labels was used
    above; the mean of only the n drawn labels is the stricter "do-nothing at
    budget n". Mine to choose; difference expected to be small.
+
+## Session 1, continued — 2026-11-01 (macOS laptop). Expectations written.
+
+- Went through the eight expectation questions in chat; recorded in
+  `expectations.md` with my answers and the agent's comments kept separate.
+- Concepts explained along the way: the 2,000 / n / 1,000 counts; what a
+  label draw is (5 subsets per n, all five methods on the same panels);
+  ridge's 37/13 penalty split vs the networks' 37/13 early-stopping split
+  (networks do not refit on all n); Adam vs early stopping (pre-training has
+  no early stopping, ridge has no Adam); SD vs standard error; bracketing.
+- Corrections to my thinking worth naming in the process note: frozen random
+  encoder is never trained (I had mixed it up with the pre-trained one);
+  more runs do not shrink the SD; the fine-tuning learning rate protects the
+  pre-trained weights rather than preventing overfitting; "short of data" is
+  the named trap for the incumbent.
+
+### Open
+
+1. Still to commit in `expectations.md`: a crossover bracket (Q7).
+2. Baseline: mean of all 2,000 train labels vs mean of the n drawn labels.
+3. Sanity checks to build into the script (proposed, not yet agreed):
+   pre-trained vs random masked-reconstruction error; train/dev panel-ID
+   overlap; baseline printed beside the table.
+4. Next: write `analysis/` and run Exhibit 1.
