@@ -195,3 +195,20 @@ page economy — and used in memo question 2 instead.
 | 100 | −30.8 | 6.3 | yes | −8.0 | 5.4 | yes |
 | 250 | −29.6 | 0.8 | yes | −7.8 | 2.9 | yes |
 | 1000 | −31.5 | 0.4 | yes | −7.1 | 2.3 | yes |
+
+Q3 split of raw → pre-trained gain (inline on `exhibit1.csv` means):
+
+| n | total | random layer alone | pre-training learned |
+|---|---:|---:|---:|
+| 50 | 27.2 | 21.5 (79%) | 5.7 (21%, unresolved) |
+| 100 | 38.8 | 30.8 (79%) | 8.0 (21%) |
+| 250 | 37.4 | 29.6 (79%) | 7.8 (21%) |
+| 1000 | 38.6 | 31.5 (82%) | 7.1 (18%) |
+
+My Q3 reading: without the control I would have credited all of the gain
+to pre-training; most comes from the nonlinear shape of the layer; random
+features give ridge nonlinear combinations to pick from. Agent's
+corrections (pending my agreement): ~80/20 split at every n; the pre-trained
+edge is roughly constant (~6–8) and becomes *measurable* at 100, not
+*begins* between 50 and 100; "regardless of the weights" too strong (learned
+weights add a resolved 7–8, and only one random encoder was tested).

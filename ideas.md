@@ -89,6 +89,19 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
 - **Raw-ridge comparison goes in memo Q2, not Part 1 Q2** — decided (mine);
   Part 1 Q2 asks only for the comparison with scratch. (S1)
 
+- **~80/20 split.** Of the raw → pre-trained gain, ~80% comes from the
+  random nonlinear layer alone, ~20% from what pre-training learned, at
+  every n (79/79/79/82%). Without the control, pre-training would have been
+  credited ~5× too much. Strong single line for memo Q2. (S1)
+- **Pre-training's edge over random is ~constant (5.7, 8.0, 7.8, 7.1)**;
+  what changes with n is the SD. It becomes measurable at 100, it does not
+  begin there. Same "smaller than its spread" logic as Q2. (S1)
+- **ReLU = threshold.** max(0, ·) is literally the contamination shape;
+  sums of hinges approximate products like flow × cure. So even random
+  hinges give ridge the building blocks the process needs. Ties Q1 and Q3
+  into one story: the incumbent fails on shape, so any nonlinear features
+  fix most of it; pre-training adds the last ~20%. (S1)
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →
@@ -102,6 +115,10 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   its penalty on a 75/25 split; the networks train on 75% only (37 of 50)
   and never refit. Part of the networks' n = 50 handicap is the protocol,
   not the method. (S1)
+- **Only one random encoder tested** (`random_encoder()`, one seed): the
+  control row's SD covers label draws only, not encoder-to-encoder
+  variation. A different random layer could do somewhat better or worse;
+  "the architecture alone buys ~80%" rests on one random draw. (S1)
 - At n = 50, every inner decision (ridge penalty, stopping epoch) rests on
   13 panels — one reason the n = 50 SDs are large. (S1)
 - Test var(y) is ~10% lower than dev; expect and report a small difference,
