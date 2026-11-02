@@ -116,7 +116,34 @@ by the analysis script.
 | Fine-tuned | 45.2 ± 21.1 | 21.3 ± 5.0 | 7.2 ± 0.5 | 3.6 ± 0.3 |
 | Mean of n labels | 190.2 ± 2.5 | 189.4 ± 0.6 | 189.4 ± 0.3 | 188.9 ± 0.1 |
 
-### Open
+### Part 1 Q1 — settled in substance (mine), prose not yet written
 
-1. Read the table against `expectations.md`; answer the four Part 1
-   questions from it. Mine.
+The incumbent's limit is its shape, not data. Evidence: flat 250 → 1,000
+(48.2 → 47.5, gain 0.7 ≈ SDs); scratch reaches 3.5 ± 0.1 on the same
+panels, so 44.0 MPa² (93%) of ridge's 47.5 is shape, not noise (computed
+from `exhibit1.csv`). Process link: flow × cure multiply (a sum assumes
+compensation the physics rules out) and a contamination threshold. Floor is
+specific to a model linear in these 160 columns (links to bonus option 3).
+Ridge vs mean: 3.98× lower at 1,000; explains 68% (n=50) → 75% (n=1,000).
+
+Post-result clarification (marked as such in `expectations.md`): I had
+missed that the random encoder has a ridge head; would then have said it
+*could* beat raw ridge.
+
+### Checkpoint at session close
+
+- `memo.md` working draft (Q1 substance, Exhibit 1, TBD sections) and
+  `ai_process_note.md` working draft started.
+- Transcript exported to `sessions/claude-code/a2-session-1.{jsonl,txt}`.
+  A failed Oct 21 start (OAuth expired, one message) exported as
+  `a2-session-0-failed.{jsonl,txt}`.
+
+### Open — next session starts here
+
+1. Part 1 Q2: what pre-training buys vs scratch, at which n (frozen vs
+   scratch, fine-tuned vs scratch, with SDs).
+2. Part 1 Q3 (random-encoder control) and Q4 (crossover bracket; I
+   expected 250–1,000).
+3. Memo decisions: the single number that settles Q1; RMSE alongside MSE?
+4. Find a real instance of rejecting/correcting agent output for the
+   process note.

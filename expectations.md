@@ -65,6 +65,12 @@ own (that is why the control is required), while the random 160 → 64
 projection and ReLU zeroing can lose information. Ridge re-weights features,
 so "amplifying the wrong ones" is not the risk; lost information is.
 
+**Added after Exhibit 1 was run (not a pre-result expectation).** I had
+pictured the random encoder on its own and missed that a ridge head is
+trained on top of it. Knowing that, I would have said it *could* beat raw
+ridge, but not for sure: random features can help or hurt, and there was no
+way to know before running it. Result: it beat raw ridge at every n.
+
 ## 4. Network from scratch
 
 **Mine.** At n = 50, depends on the learning rate: low, similar to raw ridge;
