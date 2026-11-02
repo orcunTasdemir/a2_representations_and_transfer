@@ -43,8 +43,8 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   Not discussed with me yet. (S1, agent)
 
 - **Brief endorses Rule A** ("do not read a difference smaller than it",
-  singular SD); larger of the two SDs = cautious reading. Awaiting my
-  confirmation. (S1)
+  singular SD); larger of the two SDs = cautious reading. Confirmed
+  (mine): Rule A with the larger SD. (S1)
 - **Overlap rule — my decision.** Rule A (gap > larger SD, the brief's
   wording) vs Rule B (gap > SD sum). Frozen vs scratch at 250 passes A by
   0.2 and fails B. (S1)
@@ -81,6 +81,13 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   gain is real learning. (S1)
 - **Engineer's plan in numbers:** 2,000 more tests × $4,400 = $8.8M, set
   against what 250 → 1,000 bought ridge (0.7 MPa²). (S1)
+
+- **Page economy (structure).** The brief says to answer the Part 1
+  questions "in the memo", so Part 1 and Part 2 share the 2 prose pages.
+  Part 1 Q1 and memo Q1 overlap heavily (and Part 1 Q2/Q3 with memo Q2):
+  consider merging rather than saying things twice. My call at drafting. (S1)
+- **Raw-ridge comparison goes in memo Q2, not Part 1 Q2** — decided (mine);
+  Part 1 Q2 asks only for the comparison with scratch. (S1)
 
 ## For the limitations section
 

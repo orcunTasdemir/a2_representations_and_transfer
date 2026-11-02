@@ -180,3 +180,18 @@ per-draw comparison — post-hoc sharper test = motivated analysis (logged in
 process note §2). Brief's wording endorses Rule A (gap vs a single SD).
 Still open: confirm Rule A with larger SD; include fine-tuned vs scratch in
 Q2; raw-ridge comparison in Q2 or only in memo Q2.
+
+**Q2 settled in substance (mine):** Rule A, larger of the two SDs (matches
+the brief's wording). Q2 covers both frozen vs scratch and fine-tuned vs
+scratch (both use the pre-trained encoder). Raw-ridge comparison kept out
+of Part 1 Q2 — the question asks only for the comparison with scratch, and
+page economy — and used in memo question 2 instead.
+
+## Part 1 Q3 — Rule A tables (inline on `exhibit1.csv`)
+
+| n | random − raw ridge | larger SD | A | pre-trained − random | larger SD | A |
+|---|---:|---:|:-:|---:|---:|:-:|
+| 50 | −21.5 | 6.6 | yes | −5.7 | 12.0 | no |
+| 100 | −30.8 | 6.3 | yes | −8.0 | 5.4 | yes |
+| 250 | −29.6 | 0.8 | yes | −7.8 | 2.9 | yes |
+| 1000 | −31.5 | 0.4 | yes | −7.1 | 2.3 | yes |
