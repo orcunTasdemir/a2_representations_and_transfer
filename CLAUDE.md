@@ -64,6 +64,12 @@ in a draft that I cannot defend in an oral check.
   for it to be wrong, and what the strongest objection is.
 - Say so when a result looks too good, or when a gap is smaller than its SD.
 - One work block per session, one topic.
+- **Write everything down as it happens.** Any point, sentence, idea,
+  objection or event that could help a deliverable goes into `ideas.md` the
+  moment it comes up (or straight into the draft it belongs in). Anything I
+  accept, change or reject goes into `ai_process_note.md` §2. Decisions and
+  numbers go into `NOTES.md`. Nothing worth keeping should exist only in
+  the conversation — context gets compressed and sessions end.
 
 ## End of every session
 

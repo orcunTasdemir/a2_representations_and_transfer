@@ -145,5 +145,8 @@ missed that the random encoder has a ridge head; would then have said it
 2. Part 1 Q3 (random-encoder control) and Q4 (crossover bracket; I
    expected 250–1,000).
 3. Memo decisions: the single number that settles Q1; RMSE alongside MSE?
-4. Find a real instance of rejecting/correcting agent output for the
-   process note.
+4. Process note §2 now lists accepted/changed items; still worth finding a
+   piece of agent *output* I reject on substance.
+5. New standing rule (mine): write every keepable point down immediately —
+   `ideas.md` created and back-filled from session 1; rule added to
+   `CLAUDE.md`.

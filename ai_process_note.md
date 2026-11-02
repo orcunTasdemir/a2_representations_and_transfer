@@ -23,8 +23,27 @@ Decisions that were mine:
   other three).
 - Baseline: the mean of the n drawn labels per draw (option B), over the
   full-train mean the agent had computed first (A) and the dev mean (C).
-  Shown as a reference line, not a sixth method.
+  Shown as a reference line, not a sixth method. Before accepting the
+  agent's suggestion I asked what the brief and handouts say; they say
+  "predict the mean strength" without specifying which mean (Handout R1
+  defines ŷ = ȳ), so the choice was mine to make.
 - Wrote eight expectations before running anything (`expectations.md`).
+- Adopted all three proposed sanity checks, each for a stated reason
+  (catching a failed pre-training, leakage, non-reproducibility).
+- Kept the Q1 floor claim narrow ("linear in these 160 columns", not "a
+  linear model can never"), after the agent pointed to bonus option 3.
+
+Where I changed the agent's proposed process:
+- The agent gave me an expectations sheet to fill in alone; I had it ask
+  the eight questions one at a time in chat instead, so each answer was
+  challenged before the next — that is where most corrections below came
+  from.
+- I refused to make the protocol decisions until I understood the protocol
+  (label draws, pre-training, which rows use which data), and had those
+  explained first rather than accepting defaults.
+- Asked for the analysis to wait until every open decision was settled.
+- Introduced an ideas log (`ideas.md`) so points raised in conversation are
+  not lost to context compression or a machine switch.
 
 Where my own thinking was corrected (from the expectations exercise):
 - I first called the incumbent "short of data" at 1,000 rows, citing
