@@ -3,8 +3,10 @@
 **To:** Head of Quality, Kestrel Composites
 **Re:** Should Kestrel budget 2,000 more destructive tests? A second opinion.
 
-Status, end of session 1 (2026-11-01): Exhibit 1 is built. Part 1 Q1 is
-settled in substance; Q2–Q4 and every Part 2 answer are still open. Nothing
+Status, end of session 1 (2026-11-02): Exhibit 1 is built. **All four
+Part 1 questions are settled — final versions in `part1_answers.md`**, to be
+merged into the memo sections below (they overlap; see `ideas.md` on page
+economy). Every Part 2 answer is still open. Nothing
 below is prose yet: these are my points and the numbers behind them, to be
 written up together once the reading is complete. Every number is from
 `analysis/outputs/` (`python analysis/run.py`).
@@ -43,13 +45,16 @@ Anticipated objection: the table stops at 1,000 — answered by the flat
 
 ## 2. Can the unlabelled traces be made useful?
 
-TBD — depends on Part 1 Q2 (what pre-training buys vs scratch, by n) and
-Q3 (what the random-encoder control rules out). Note the table ends at
+TBD (my decision). Inputs settled in `part1_answers.md`: vs scratch,
+pre-training buys nothing resolvable; vs the incumbent, frozen pre-trained
+wins clearly at every n (33.5 vs 60.7 at 50; 8.9 vs 47.5 at 1,000), ~80% of
+that from the architecture alone. Note the table ends at
 1,000 labels while Kestrel holds 2,000.
 
 ## 3. How many tests should the next panel family budget?
 
-TBD — depends on Part 1 Q4 (crossover bracket). Must give a number, what
+TBD (my decision). Input: means cross between 100 and 250; scratch ahead
+from 250; pre-training's advantage gone within the low hundreds. Must give a number, what
 happens on either side of it, and the cost at $4,400 per panel against the
 engineer's 2,000 ($8.8M).
 

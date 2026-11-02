@@ -96,6 +96,67 @@ def run_cell(n, r, Xtr, ytr, Xdev, ydev, encoders, rand_enc):
     return rows
 
 
+# Pairs read in Part 1, as (a, b): the gap is mean(a) - mean(b).
+PAIRS = [("frozen_pretrained", "scratch"),       # Q2, Q4
+         ("finetuned", "scratch"),               # Q2
+         ("frozen_random", "ridge_raw"),         # Q3: the architecture alone
+         ("frozen_pretrained", "frozen_random"),  # Q3: what pre-training learned
+         ("ridge_raw", "scratch")]               # Q1: same panels, flexible model
+
+
+def part1_numbers(cells):
+    """The derived numbers the Part 1 reading uses, so each comes from this run.
+
+    Rule A (the brief's wording): a gap is read only if it exceeds the larger
+    of the two cells' SDs.
+    """
+    m = cells.set_index(["method", "n"])
+    rows = []
+    for a, b in PAIRS:
+        for n in LABEL_COUNTS:
+            A, B = m.loc[(a, n)], m.loc[(b, n)]
+            gap = A["mean"] - B["mean"]
+            larger = max(A["sd"], B["sd"])
+            rows.append({"a": a, "b": b, "n": n, "mean_a": A["mean"], "sd_a": A["sd"],
+                         "mean_b": B["mean"], "sd_b": B["sd"], "gap": gap,
+                         "larger_sd": larger, "rule_a": abs(gap) > larger})
+    comp = pd.DataFrame(rows)
+    comp.to_csv(OUT / "part1_comparisons.csv", index=False)
+    log("\nPart 1 comparisons -- gap = mean(a) - mean(b); Rule A: |gap| > larger SD")
+    for (a, b), g in comp.groupby(["a", "b"], sort=False):
+        log(f"  {a} - {b}")
+        for _, r in g.iterrows():
+            log(f"    n={r.n:<5} gap {r.gap:6.1f}  larger SD {r.larger_sd:5.1f}"
+                f"  Rule A {'yes' if r.rule_a else 'no'}")
+
+    # Q3: split the raw -> pre-trained gain into its two steps.
+    split = []
+    for n in LABEL_COUNTS:
+        raw, rnd, pre = (m.loc[(k, n), "mean"]
+                         for k in ("ridge_raw", "frozen_random", "frozen_pretrained"))
+        split.append({"n": n, "total": raw - pre, "architecture": raw - rnd,
+                      "pretraining": rnd - pre,
+                      "architecture_share": (raw - rnd) / (raw - pre)})
+    split = pd.DataFrame(split)
+    split.to_csv(OUT / "part1_split.csv", index=False)
+    log("\nQ3 -- raw ridge -> pre-trained gain: architecture alone vs pre-training")
+    for _, r in split.iterrows():
+        log(f"  n={int(r.n):<5} total {r.total:5.1f}  architecture {r.architecture:5.1f}"
+            f" ({r.architecture_share:.0%})  pre-training {r.pretraining:4.1f}")
+
+    # Q1: the incumbent against the mean and against a flexible model.
+    log("\nQ1 -- the incumbent")
+    for n in LABEL_COUNTS:
+        base, rid = m.loc[("mean_baseline", n), "mean"], m.loc[("ridge_raw", n), "mean"]
+        log(f"  n={n:<5} mean-baseline / ridge {base / rid:.2f}x"
+            f"  ridge explains {1 - rid / base:.1%} of the variation")
+    r250, r1000 = m.loc[("ridge_raw", 250), "mean"], m.loc[("ridge_raw", 1000), "mean"]
+    s1000 = m.loc[("scratch", 1000), "mean"]
+    log(f"  ridge 250 -> 1000 improvement: {r250 - r1000:.1f}")
+    log(f"  ridge - scratch at 1000: {r1000 - s1000:.1f} = {(r1000 - s1000) / r1000:.0%}"
+        f" of ridge's error")
+
+
 def main():
     t0 = time.time()
     Xtr, ytr = load("train")
@@ -151,6 +212,8 @@ def main():
         "Exhibit 1. Dev MSE (MPa²), mean ± SD over runs. Lower is better.\n\n"
         + table + "\n")
     log("\n" + table)
+
+    part1_numbers(cells)
 
     # ---- check 3: same numbers on a re-run --------------------------------
     log("\nCheck 3 -- re-run pre-training (seed 0) and cell n=50, draw 0")

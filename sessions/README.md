@@ -12,7 +12,7 @@ Agent used: Claude Code (VS Code extension, macOS)
 | File | Dates | Machine | Topic |
 |---|---|---|---|
 | `a2-session-0-failed` | 2026-10-21 | macOS | Failed start: my opening message, answered only by "OAuth session expired". No work done. Included for completeness. |
-| `a2-session-1` | 2026-10-20 → 2026-11-01 | macOS | Setup; protocol and pre-training concepts; eight expectations written; `analysis/run.py` and Exhibit 1; Part 1 Q1 read. |
+| `a2-session-1` | 2026-10-20 → 2026-11-02 | macOS | Setup; protocol and pre-training concepts; eight expectations written; `analysis/run.py` and Exhibit 1; all four Part 1 questions read and settled (`part1_answers.md`). |
 
 ## Known gaps
 

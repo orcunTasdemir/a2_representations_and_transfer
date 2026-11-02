@@ -248,3 +248,25 @@ genuinely about equal." Only the second half is a positive finding.
 **All four Part 1 questions settled in substance.** Next: memo questions
 (Q1 lead number, Q2 deploy method at current label count, Q3 budget number
 with money), then one test score, then prose.
+
+## Session 1 close — 2026-11-02
+
+- `part1_answers.md` written: final agreed answers to Part 1 Q1–Q4.
+- `run.py` now also produces every derived Part 1 number
+  (`part1_comparisons.csv`, `part1_split.csv`, Q1 ratios in `checks.txt`).
+  Re-run: all quoted values reproduced; `exhibit1_runs.csv` byte-identical.
+- Process note §1–§3 brought up to date; `CLAUDE.md` now lists the files to
+  read at session start and the Rule A / numbers-from-run.py rules.
+- Transcript re-exported (`a2-session-1.{jsonl,txt}`, overwrites the
+  11-01 snapshot with the full thread to date).
+
+### Open — next session starts here
+
+1. Memo Q1: which number settles it (0.7 for 4× labels, or 47.5 vs 3.5).
+2. Memo Q2: method to deploy at 2,000 labels (table stops at 1,000) and its
+   error vs the incumbent.
+3. Memo Q3: budget number, both sides of it, money vs $8.8M.
+4. Then: score the one recommended pipeline once on test; memo prose
+   (merge Part 1 into the memo sections); cut the process note to 1 page.
+5. Optional extension (+4) — not yet discussed.
+6. Deadline Thursday 2026-11-05, 6:00 PM Central.

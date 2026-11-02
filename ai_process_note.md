@@ -12,6 +12,10 @@ page and put in my own words at the end. Graded on specificity.
   and draws, the per-row run counts from the brief, fine-tuning from
   encoder r mod 3, the mean ± SD table.
 - Three sanity checks (my choice to include them; the agent proposed them).
+- The arithmetic of the reading: gap-vs-SD tables for every pair compared
+  in Part 1, the architecture / pre-training split of the gain, and the Q1
+  ratios. I asked for these explicitly ("do the math for me") rather than
+  eyeballing overlaps; they are now produced by `run.py`.
 - Explanations of concepts I was unsure of: label draws, what pre-training
   and the encoder are, which rows use labelled vs unlabelled data, Adam vs
   early stopping, SD vs standard error, bracketing a crossover.
@@ -30,6 +34,13 @@ Decisions that were mine:
 - Wrote eight expectations before running anything (`expectations.md`).
 - Adopted all three proposed sanity checks, each for a stated reason
   (catching a failed pre-training, leakage, non-reproducibility).
+- Overlap rule: asked what the brief itself endorses before choosing; it
+  says "do not read a difference smaller than it" (one SD), so Rule A —
+  gap vs the larger of the two SDs — over the stricter sum-of-SDs rule.
+- Q2 scope: covered both frozen and fine-tuned vs scratch (both use the
+  pre-trained encoder); kept the large gain over the incumbent out of Part 1
+  Q2, because the question does not ask for it and pages are limited — it
+  goes in memo question 2.
 - Kept the Q1 floor claim narrow ("linear in these 160 columns", not "a
   linear model can never"), after the agent pointed to bonus option 3.
 
@@ -81,6 +92,13 @@ Readings of the table I corrected or had corrected:
 - Q3: "pre-trained gets an edge after 50–100" → the edge is roughly
   constant and only becomes *measurable* at 100; "regardless of the weights"
   dropped (learned weights add a resolved 7–8; one random encoder only).
+- Q2/Q4: my first reading of the SDs was "everything overlaps"; with the
+  gap tables I could see that *which* comparisons resolve differs —
+  fine-tuned vs scratch never; frozen vs scratch only from 250; random vs
+  incumbent always; pre-trained vs random from 100.
+- Fine-tuned vs scratch: learned to separate "no evidence of a difference"
+  (n = 50, 100: SDs too large) from "evidence of no meaningful difference"
+  (n ≥ 250: small SDs, tinier gaps).
 - Q4: "means cross closer to 250" dropped (a bracket does not locate). I
   first explained the early crossover by the architecture, then corrected
   myself: frozen and scratch share it; the difference is fixed pretext
@@ -97,4 +115,8 @@ Found: the paired per-draw comparison (above).
   re-running the n = 50, draw 0 cell gives identical scores for all 8 runs.
 - Ratios quoted in the memo draft (3.98×, 75%, 44.0 = 93%) recomputed from
   `analysis/outputs/exhibit1.csv`, not by hand.
+- Every derived number in the Part 1 reading (gaps, Rule A verdicts, 80/20
+  split, Q1 ratios) was first computed ad hoc, then moved into `run.py`;
+  the re-run reproduced each quoted value, and `exhibit1_runs.csv` came out
+  byte-identical to the earlier run (checked with `cmp`).
 - Test extract untouched so far.

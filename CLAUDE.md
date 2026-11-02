@@ -15,7 +15,10 @@ submission documents. They apply to this assignment. `handouts/` holds the
 lecture handouts; Handout 9 (`lecture09_transfer_learning.pdf`) is the one
 the brief cites by section, Handout 6 the background.
 
-Read `NOTES.md` at the start of every session.
+Read `NOTES.md` at the start of every session. Then `part1_answers.md` (the
+settled Part 1 reading), `ideas.md` (points not yet used) and the working
+drafts `memo.md` and `ai_process_note.md`. `expectations.md` holds what I
+expected before the table was run.
 
 ## Hard rules
 
@@ -51,6 +54,11 @@ in a draft that I cannot defend in an oral check.
 - Grader has Python 3.10+, numpy, pandas, scikit-learn, matplotlib and
   nothing else. Anything further goes in `analysis/README.md`. No GPU.
 - Outputs go to `analysis/outputs/`.
+- Reading rule (mine): a gap is read only if it exceeds the larger of the
+  two cells' SDs (Rule A, the brief's wording). Mean ± SD is the standard;
+  no post-hoc sharper tests.
+- Every derived number quoted anywhere must be produced by `run.py`, not by
+  an ad hoc command.
 - Use `starter/kestrel.py` (`load`, `label_subset`, `ridge`, `pretrain`,
   `random_encoder`, `frozen_ridge`, `supervised`) rather than reimplementing.
 - Pre-train the three encoders once, outside the label loop.

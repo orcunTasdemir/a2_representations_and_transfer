@@ -24,7 +24,11 @@ only; versions used are pinned in `../requirements.txt`. It imports
    `seed=r` for every method, including both frozen rows. Fine-tuning on
    draw r starts from encoder r mod 3. A reference line predicts the mean
    of the n drawn labels.
-5. **Check 3**: re-runs pre-training for seed 0 and the n=50, draw 0 cell,
+5. The Part 1 reading numbers: gap and Rule A verdict (gap > larger SD)
+   for every pair compared, the split of the raw → pre-trained gain into
+   architecture vs pre-training, and the incumbent's ratios to the mean
+   baseline and to the network from scratch.
+6. **Check 3**: re-runs pre-training for seed 0 and the n=50, draw 0 cell,
    and confirms the results are bit-identical.
 
 `labeled_test.csv` is not read by this script.
@@ -36,4 +40,6 @@ only; versions used are pinned in `../requirements.txt`. It imports
 | `exhibit1_runs.csv` | One row per run: n, draw, method, encoder, dev MSE |
 | `exhibit1.csv` | One row per cell: mean, sample SD (ddof=1), runs |
 | `exhibit1.md` | Exhibit 1, formatted |
-| `checks.txt` | Full console log, including the three checks |
+| `part1_comparisons.csv` | Every Part 1 pair: means, SDs, gap, larger SD, Rule A |
+| `part1_split.csv` | Raw → pre-trained gain: architecture alone vs pre-training |
+| `checks.txt` | Full console log: the three checks and the Part 1 numbers |

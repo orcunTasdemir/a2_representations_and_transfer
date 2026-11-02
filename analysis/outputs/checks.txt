@@ -24,7 +24,7 @@ Check 1 -- masked reconstruction on dev gauges (hidden gauges only; standardised
 
 Exhibit 1 -- fitting
   n=50       0.7 s
-  n=100      1.7 s
+  n=100      1.6 s
   n=250      6.2 s
   n=1000    13.9 s
 
@@ -36,6 +36,47 @@ Exhibit 1 -- fitting
 | Network from scratch | 47.0 ± 17.8 | 23.3 ± 9.4 | 7.8 ± 1.5 | 3.5 ± 0.1 | 5 |
 | Fine-tuned encoder | 45.2 ± 21.1 | 21.3 ± 5.0 | 7.2 ± 0.5 | 3.6 ± 0.3 | 5 |
 | Reference: predict the mean of the n labels, no gauges | 190.2 ± 2.5 | 189.4 ± 0.6 | 189.4 ± 0.3 | 188.9 ± 0.1 | 5 |
+
+Part 1 comparisons -- gap = mean(a) - mean(b); Rule A: |gap| > larger SD
+  frozen_pretrained - scratch
+    n=50    gap  -13.5  larger SD  17.8  Rule A no
+    n=100   gap   -5.6  larger SD   9.4  Rule A no
+    n=250   gap    3.1  larger SD   2.9  Rule A yes
+    n=1000  gap    5.4  larger SD   2.3  Rule A yes
+  finetuned - scratch
+    n=50    gap   -1.8  larger SD  21.1  Rule A no
+    n=100   gap   -2.0  larger SD   9.4  Rule A no
+    n=250   gap   -0.6  larger SD   1.5  Rule A no
+    n=1000  gap    0.1  larger SD   0.3  Rule A no
+  frozen_random - ridge_raw
+    n=50    gap  -21.5  larger SD   6.6  Rule A yes
+    n=100   gap  -30.8  larger SD   6.3  Rule A yes
+    n=250   gap  -29.6  larger SD   0.8  Rule A yes
+    n=1000  gap  -31.5  larger SD   0.4  Rule A yes
+  frozen_pretrained - frozen_random
+    n=50    gap   -5.7  larger SD  12.0  Rule A no
+    n=100   gap   -8.0  larger SD   5.4  Rule A yes
+    n=250   gap   -7.8  larger SD   2.9  Rule A yes
+    n=1000  gap   -7.1  larger SD   2.3  Rule A yes
+  ridge_raw - scratch
+    n=50    gap   13.7  larger SD  17.8  Rule A no
+    n=100   gap   33.2  larger SD   9.4  Rule A yes
+    n=250   gap   40.4  larger SD   1.5  Rule A yes
+    n=1000  gap   44.0  larger SD   0.4  Rule A yes
+
+Q3 -- raw ridge -> pre-trained gain: architecture alone vs pre-training
+  n=50    total  27.2  architecture  21.5 (79%)  pre-training  5.7
+  n=100   total  38.8  architecture  30.8 (79%)  pre-training  8.0
+  n=250   total  37.4  architecture  29.6 (79%)  pre-training  7.8
+  n=1000  total  38.6  architecture  31.5 (82%)  pre-training  7.1
+
+Q1 -- the incumbent
+  n=50    mean-baseline / ridge 3.13x  ridge explains 68.1% of the variation
+  n=100   mean-baseline / ridge 3.36x  ridge explains 70.2% of the variation
+  n=250   mean-baseline / ridge 3.93x  ridge explains 74.6% of the variation
+  n=1000  mean-baseline / ridge 3.98x  ridge explains 74.9% of the variation
+  ridge 250 -> 1000 improvement: 0.7
+  ridge - scratch at 1000: 44.0 = 93% of ridge's error
 
 Check 3 -- re-run pre-training (seed 0) and cell n=50, draw 0
   encoder 0 weights identical: True
