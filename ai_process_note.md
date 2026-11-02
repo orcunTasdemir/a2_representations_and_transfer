@@ -33,6 +33,23 @@ Decisions that were mine:
 - Kept the Q1 floor claim narrow ("linear in these 160 columns", not "a
   linear model can never"), after the agent pointed to bonus option 3.
 
+Agent output I rejected on substance:
+- **Paired per-draw comparison (rejected).** When frozen vs scratch turned
+  out unresolvable at n = 50 and 100, the agent offered to compute
+  per-draw differences (same panels, so shared noise cancels), which would
+  likely have "resolved" the gap. I declined: picking a more sensitive test
+  *after* the prescribed one failed to confirm what theory predicts is
+  motivated analysis, and the brief fixes the standard (mean ± SD, do not
+  read a difference smaller than it). The agent agreed with the decision
+  but noted pairing does remove shared draw noise — my reason is the
+  post-hoc choice, not that pairing is uninformative.
+
+Where I accepted a correction of my reading:
+- Q2: my first bracket ("scratch overtakes frozen between 100 and 250")
+  needed a resolved ordering on both sides; frozen is never clearly ahead,
+  so only "scratch clearly ahead by 1,000, marginally by 250" is supported.
+  Adopted the "smaller than its spread" phrasing for 50 and 100.
+
 Where I changed the agent's proposed process:
 - The agent gave me an expectations sheet to fill in alone; I had it ask
   the eight questions one at a time in chat instead, so each answer was
@@ -58,8 +75,7 @@ Where my own thinking was corrected (from the expectations exercise):
 Expectations the table contradicted: ridge at n = 50 (expected near 188.9;
 got 60.7); random encoder (expected close to raw ridge; beat it at every n).
 
-**Still to find:** a specific piece of the agent's *output* I rejected or
-corrected. None so far — watch for it in the Q2–Q4 reading and the memo.
+Found: the paired per-draw comparison (above).
 
 ## 3. How I checked the numbers
 

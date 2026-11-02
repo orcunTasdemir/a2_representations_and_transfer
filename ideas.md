@@ -35,12 +35,16 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
 - **Bracketing rule:** where two rows are within one SD at some n, that n
   cannot narrow the bracket. My pre-result expectation: 250–1,000, nearer
   the top. (S1)
-- **Needs my decision — paired comparison.** All methods share the same 5
+- **[dropped: my decision — post-hoc choice of a sharper test is motivated
+  analysis; brief fixes mean ± SD]** **Paired comparison.** All methods share the same 5
   draws, so per-draw differences (method A − method B on the same panels)
   could resolve gaps that overlapping SDs cannot. The brief asks for mean ±
   SD and "do not read a difference smaller than it", so at most a footnote.
   Not discussed with me yet. (S1, agent)
 
+- **Brief endorses Rule A** ("do not read a difference smaller than it",
+  singular SD); larger of the two SDs = cautious reading. Awaiting my
+  confirmation. (S1)
 - **Overlap rule — my decision.** Rule A (gap > larger SD, the brief's
   wording) vs Rule B (gap > SD sum). Frozen vs scratch at 250 passes A by
   0.2 and fails B. (S1)

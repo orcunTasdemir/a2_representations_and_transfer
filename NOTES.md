@@ -173,3 +173,10 @@ Fine-tuned ≈ scratch at n ≥ 250 is a real tie (small SDs), not hidden noise.
 Open (mine): Rule A or B; whether to compute paired per-draw differences
 (footnote at most); which comparison answers "can the traces be made
 useful" — vs scratch (nothing resolved) or vs raw ridge (large gains).
+
+Q2 decisions so far (mine): agreed with the corrected reading (no two-sided
+bracket; "smaller than its spread" at 50/100). **Rejected** the paired
+per-draw comparison — post-hoc sharper test = motivated analysis (logged in
+process note §2). Brief's wording endorses Rule A (gap vs a single SD).
+Still open: confirm Rule A with larger SD; include fine-tuned vs scratch in
+Q2; raw-ridge comparison in Q2 or only in memo Q2.
