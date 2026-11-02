@@ -235,3 +235,16 @@ Proposed wording: "The means cross between 100 and 250 labels. From 250
 on, training from scratch is ahead, marginally at 250 and clearly at
 1,000. Below 250 the two cannot be told apart: frozen's lower means at 50
 and 100 are smaller than their spread."
+
+**Q4 settled in substance (mine, 2026-11-02):** agreed with the corrections
+and the proposed wording; "closer to 250" dropped. I briefly attributed the
+early crossover to the architecture (shared by both rows) and corrected
+myself: the reason is frozen features fixed on the pretext task vs scratch
+learning strength-specific features, on a simple problem.
+Fine-tuned vs scratch wording: "cannot be told apart at any label count —
+at 50 and 100 because the spread is large, from 250 on because they are
+genuinely about equal." Only the second half is a positive finding.
+
+**All four Part 1 questions settled in substance.** Next: memo questions
+(Q1 lead number, Q2 deploy method at current label count, Q3 budget number
+with money), then one test score, then prose.

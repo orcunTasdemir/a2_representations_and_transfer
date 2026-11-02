@@ -111,7 +111,11 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   simple (few underlying conditions; noise floor ≤ 3.5). Fine-tuned ≈
   scratch from 250 agrees. Feeds the budget question: pre-training's
   advantage is gone within the low hundreds. Budget number is mine. (S1)
-- **Low priority — expectations vs result.** I expected the crossover at
+- **Fine-tuned vs scratch: absence of evidence vs evidence of absence.**
+  At 50/100, can't tell (huge SDs — a real fine-tuning advantage could hide
+  there, where Handout 9 says it should be); from 250 on, genuinely equal
+  (small SDs, tinier gaps). (S1)
+- **[used → ai_process_note.md §2]** **Low priority — expectations vs result.** I expected the crossover at
   250–1,000; the means crossed at 100–250. Not required anywhere; at most a
   phrase in the process note §3. (S1)
 

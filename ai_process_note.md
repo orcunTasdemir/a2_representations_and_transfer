@@ -73,7 +73,18 @@ Where my own thinking was corrected (from the expectations exercise):
   overfitting; it is about not overwriting the pre-trained weights.
 
 Expectations the table contradicted: ridge at n = 50 (expected near 188.9;
-got 60.7); random encoder (expected close to raw ridge; beat it at every n).
+got 60.7); random encoder (expected close to raw ridge; beat it at every n);
+crossover (expected 250–1,000; the means crossed at 100–250). *Low
+priority — first to cut if space is needed.*
+
+Readings of the table I corrected or had corrected:
+- Q3: "pre-trained gets an edge after 50–100" → the edge is roughly
+  constant and only becomes *measurable* at 100; "regardless of the weights"
+  dropped (learned weights add a resolved 7–8; one random encoder only).
+- Q4: "means cross closer to 250" dropped (a bracket does not locate). I
+  first explained the early crossover by the architecture, then corrected
+  myself: frozen and scratch share it; the difference is fixed pretext
+  features vs features learned for strength.
 
 Found: the paired per-draw comparison (above).
 
