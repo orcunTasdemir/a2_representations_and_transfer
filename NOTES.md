@@ -212,3 +212,10 @@ corrections (pending my agreement): ~80/20 split at every n; the pre-trained
 edge is roughly constant (~6–8) and becomes *measurable* at 100, not
 *begins* between 50 and 100; "regardless of the weights" too strong (learned
 weights add a resolved 7–8, and only one random encoder was tested).
+
+**Q3 settled in substance (mine, 2026-11-02):** agreed with all three
+corrections — ~80/20 split stated as such; pre-training's edge "becomes
+measurable at 100" (not "begins"); drop "regardless of the weights", and
+note only one random encoder was tested (a random object, per the brief).
+
+## Part 1 Q4 — started 2026-11-02
