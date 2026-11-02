@@ -80,8 +80,12 @@ by the analysis script.
 
 ### Open
 
-1. Still to commit in `expectations.md`: a crossover bracket (Q7).
-2. Baseline: mean of all 2,000 train labels vs mean of the n drawn labels.
+1. ~~Crossover bracket~~ committed: between 250 and 1,000, guess nearer the top.
+2. **Decided (mine): baseline option B** — predict the mean of the n drawn
+   labels, per draw, scored on dev; mean ± SD over the same 5 draws as the
+   other rows. Shown as a reference line under the five method rows, not as
+   a sixth method. (A = full-train mean 188.9 and C = dev mean were the
+   alternatives; C is not a usable predictor.)
 3. Sanity checks to build into the script (proposed, not yet agreed):
    pre-trained vs random masked-reconstruction error; train/dev panel-ID
    overlap; baseline printed beside the table.

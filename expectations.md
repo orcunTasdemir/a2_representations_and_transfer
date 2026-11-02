@@ -122,6 +122,10 @@ is the number of random choices per run (init, split, stopping point).
 will get better and pass the frozen encoder as we go from 50 to 1,000. If
 there is no flip, the data might just not be enough.
 
+**Committed bracket (mine).** Between 250 and 1,000; my guess is nearer the
+top of that range. (I first said "500 to 1,000", misremembering 500 as one of
+the label counts; a bracket's ends must be measured counts.)
+
 **Agent's comments.** Bracketing explained: state the flip as "between two
 measured n", never a point; where the two are within one SD, that n cannot
 narrow the bracket. Still to commit to: a specific bracket, and whether at
