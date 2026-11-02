@@ -1,0 +1,45 @@
+train (2000, 160)  dev (1000, 160)  traces (20000, 160)
+
+Check 2 -- no panel appears in two files
+   train & dev    shared panel_ids: 0
+   train & test   shared panel_ids: 0
+   train & traces shared panel_ids: 0
+     dev & test   shared panel_ids: 0
+     dev & traces shared panel_ids: 0
+    test & traces shared panel_ids: 0
+  sizes: train 2000, dev 1000, test 1000, traces 20000
+  -> PASS
+
+Pre-training 3 encoders on 20000 unlabelled traces
+  encoder 0: 4.4 s
+  encoder 1: 4.4 s
+  encoder 2: 4.4 s
+
+Check 1 -- masked reconstruction on dev gauges (hidden gauges only; standardised units, so predicting 0 = the training mean)
+  pre-trained encoder 0: 0.015
+  pre-trained encoder 1: 0.014
+  pre-trained encoder 2: 0.013
+  random encoder:        2.225
+  predict 0 (no model):  1.042
+
+Exhibit 1 -- fitting
+  n=50       0.7 s
+  n=100      1.7 s
+  n=250      6.2 s
+  n=1000    13.9 s
+
+| Method | n = 50 | n = 100 | n = 250 | n = 1000 | Runs/cell |
+|---|---:|---:|---:|---:|---:|
+| Ridge on the 160 raw gauges (incumbent) | 60.7 ± 5.6 | 56.5 ± 6.3 | 48.2 ± 0.6 | 47.5 ± 0.4 | 5 |
+| Frozen pre-trained encoder + ridge | 33.5 ± 12.0 | 17.6 ± 5.4 | 10.8 ± 2.9 | 8.9 ± 2.3 | 15 |
+| Frozen random encoder + ridge (control) | 39.2 ± 6.6 | 25.6 ± 3.5 | 18.6 ± 0.8 | 16.0 ± 0.2 | 5 |
+| Network from scratch | 47.0 ± 17.8 | 23.3 ± 9.4 | 7.8 ± 1.5 | 3.5 ± 0.1 | 5 |
+| Fine-tuned encoder | 45.2 ± 21.1 | 21.3 ± 5.0 | 7.2 ± 0.5 | 3.6 ± 0.3 | 5 |
+| Reference: predict the mean of the n labels, no gauges | 190.2 ± 2.5 | 189.4 ± 0.6 | 189.4 ± 0.3 | 188.9 ± 0.1 | 5 |
+
+Check 3 -- re-run pre-training (seed 0) and cell n=50, draw 0
+  encoder 0 weights identical: True
+  all 8 dev MSEs identical: True
+  -> PASS
+
+Total time 41 s

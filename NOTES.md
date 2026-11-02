@@ -90,3 +90,33 @@ by the analysis script.
    pre-trained vs random masked-reconstruction error; train/dev panel-ID
    overlap; baseline printed beside the table.
 4. Next: write `analysis/` and run Exhibit 1.
+
+## Session 1, continued — 2026-11-01. Exhibit 1 run.
+
+### Decisions made (mine)
+
+- Sanity checks 1–3 adopted (pre-training learned / no panel overlap /
+  bit-identical re-run).
+
+### What was done
+
+- `analysis/run.py` written and run: `python analysis/run.py`, 41 s.
+  Outputs in `analysis/outputs/`. Test extract not touched.
+- All three checks PASS. Check 1: masked reconstruction MSE on dev gauges
+  0.015 / 0.014 / 0.013 (pre-trained), 2.225 (random), 1.042 (predict 0).
+
+### Exhibit 1 (dev MSE, MPa², mean ± SD) — from `analysis/outputs/exhibit1.md`
+
+| Method | n=50 | n=100 | n=250 | n=1000 |
+|---|---:|---:|---:|---:|
+| Ridge raw | 60.7 ± 5.6 | 56.5 ± 6.3 | 48.2 ± 0.6 | 47.5 ± 0.4 |
+| Frozen pre-trained | 33.5 ± 12.0 | 17.6 ± 5.4 | 10.8 ± 2.9 | 8.9 ± 2.3 |
+| Frozen random | 39.2 ± 6.6 | 25.6 ± 3.5 | 18.6 ± 0.8 | 16.0 ± 0.2 |
+| Scratch | 47.0 ± 17.8 | 23.3 ± 9.4 | 7.8 ± 1.5 | 3.5 ± 0.1 |
+| Fine-tuned | 45.2 ± 21.1 | 21.3 ± 5.0 | 7.2 ± 0.5 | 3.6 ± 0.3 |
+| Mean of n labels | 190.2 ± 2.5 | 189.4 ± 0.6 | 189.4 ± 0.3 | 188.9 ± 0.1 |
+
+### Open
+
+1. Read the table against `expectations.md`; answer the four Part 1
+   questions from it. Mine.
