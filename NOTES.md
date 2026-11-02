@@ -270,3 +270,12 @@ with money), then one test score, then prose.
    (merge Part 1 into the memo sections); cut the process note to 1 page.
 5. Optional extension (+4) — not yet discussed.
 6. Deadline Thursday 2026-11-05, 6:00 PM Central.
+
+---
+
+## Session 2 — 2026-11-02 (macOS laptop). Memo questions.
+
+Same VS Code conversation as session 1 (thread continues in
+`0c849d9a….jsonl`), so the session-2 export will contain session 1 as its
+opening part — as in A1; to be stated in `sessions/README.md`.
+Start state: repo in sync with GitHub at 13db762; all Part 1 settled.
