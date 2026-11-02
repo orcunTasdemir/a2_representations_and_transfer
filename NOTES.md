@@ -219,3 +219,19 @@ measurable at 100" (not "begins"); drop "regardless of the weights", and
 note only one random encoder was tested (a random object, per the brief).
 
 ## Part 1 Q4 — started 2026-11-02
+
+My Q4 reading: means cross between 100 and 250 ("closer to 250"); table
+cannot confirm frozen is ever ahead; scratch catches up early because the
+architecture already suits the problem (from Q3).
+Agent's corrections (pending my agreement): drop "closer to 250" — a
+bracket does not locate within itself; resolvability at 250 is not
+information about where the means crossed. Architecture is shared by
+frozen and scratch, so it cannot explain the ordering between them: frozen
+features are fixed and aimed at reconstruction (levels off 10.8 → 8.9),
+scratch learns features for strength (7.8 → 3.5). Early crossover vs
+Handout 9's "tens of thousands": few underlying conditions, noise floor
+≤ 3.5, so a simple problem; fine-tuned ≈ scratch from 250 agrees.
+Proposed wording: "The means cross between 100 and 250 labels. From 250
+on, training from scratch is ahead, marginally at 250 and clearly at
+1,000. Below 250 the two cannot be told apart: frozen's lower means at 50
+and 100 are smaller than their spread."

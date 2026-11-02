@@ -102,6 +102,19 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   into one story: the incumbent fails on shape, so any nonlinear features
   fix most of it; pre-training adds the last ~20%. (S1)
 
+- **Why scratch overtakes frozen (Q4):** not architecture (shared) but the
+  target of the features — frozen's are fixed and aimed at rebuilding
+  gauges (levels off 10.8 → 8.9, 250 → 1,000); scratch's are learned for
+  strength (7.8 → 3.5). (S1)
+- **Handout 9's regime thresholds shift down here:** scratch catches frozen
+  by a few hundred labels, not tens of thousands, because the problem is
+  simple (few underlying conditions; noise floor ≤ 3.5). Fine-tuned ≈
+  scratch from 250 agrees. Feeds the budget question: pre-training's
+  advantage is gone within the low hundreds. Budget number is mine. (S1)
+- **Low priority — expectations vs result.** I expected the crossover at
+  250–1,000; the means crossed at 100–250. Not required anywhere; at most a
+  phrase in the process note §3. (S1)
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →
