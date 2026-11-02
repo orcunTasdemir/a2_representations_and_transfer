@@ -150,3 +150,26 @@ missed that the random encoder has a ridge head; would then have said it
 5. New standing rule (mine): write every keepable point down immediately —
    `ideas.md` created and back-filled from session 1; rule added to
    `CLAUDE.md`.
+
+## Session 1, continued — 2026-11-01. Part 1 Q2 in progress.
+
+Gap-vs-SD tables (inline `python -c` on `analysis/outputs/exhibit1.csv`; must
+be added to `run.py` if any of it goes in the memo). Rule A = gap > larger
+SD (brief's wording); Rule B = gap > sum of SDs (ranges don't touch).
+
+| n | frozen − scratch | larger SD | SD sum | A | B | finetuned − scratch | larger SD | A | B |
+|---|---:|---:|---:|:-:|:-:|---:|---:|:-:|:-:|
+| 50 | −13.5 | 17.8 | 29.8 | no | no | −1.8 | 21.1 | no | no |
+| 100 | −5.6 | 9.4 | 14.8 | no | no | −2.0 | 9.4 | no | no |
+| 250 | +3.1 | 2.9 | 4.4 | yes (barely) | no | −0.6 | 1.5 | no | no |
+| 1000 | +5.4 | 2.3 | 2.4 | yes | yes | +0.1 | 0.3 | no | no |
+
+My first Q2 reading: scratch overtakes frozen between 100 and 250;
+fine-tuned vs scratch unresolvable everywhere. Agent's challenge: frozen is
+never *clearly* ahead (fails both rules at 50, 100), so a two-sided bracket
+is not supported; only "scratch clearly ahead by 1,000, marginally by 250".
+Fine-tuned ≈ scratch at n ≥ 250 is a real tie (small SDs), not hidden noise.
+
+Open (mine): Rule A or B; whether to compute paired per-draw differences
+(footnote at most); which comparison answers "can the traces be made
+useful" — vs scratch (nothing resolved) or vs raw ridge (large gains).

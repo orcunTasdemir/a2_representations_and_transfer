@@ -41,6 +41,20 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   SD and "do not read a difference smaller than it", so at most a footnote.
   Not discussed with me yet. (S1, agent)
 
+- **Overlap rule — my decision.** Rule A (gap > larger SD, the brief's
+  wording) vs Rule B (gap > SD sum). Frozen vs scratch at 250 passes A by
+  0.2 and fails B. (S1)
+- **Frozen is never clearly ahead of scratch** (fails both rules at 50 and
+  100), so the Q4 bracket is one-sided in what it resolves: scratch clearly
+  ahead by 1,000, marginally by 250; means cross between 100 and 250. (S1)
+- **Fine-tuned ≈ scratch at n ≥ 250 is a genuine tie** (SDs 0.5 / 0.3, gaps
+  smaller still): the starting point stops mattering once there are a few
+  hundred labels. At 50 / 100 the SDs are too large to tell. (S1)
+- **Pre-training vs scratch: nothing resolved; vs raw ridge: large and
+  resolved at every n** (33.5 vs 60.7 at 50; 8.9 vs 47.5 at 1,000). Which
+  comparison answers "can the traces be made useful" — my call; Q3's
+  control then says how much is due to pre-training. (S1)
+
 ## For the memo — Part 2 and framing
 
 - **Lead number for Q1 ("the number that settles it") — my decision.**
