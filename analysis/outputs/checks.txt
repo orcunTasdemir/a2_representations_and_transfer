@@ -11,9 +11,9 @@ Check 2 -- no panel appears in two files
   -> PASS
 
 Pre-training 3 encoders on 20000 unlabelled traces
-  encoder 0: 4.4 s
-  encoder 1: 4.4 s
-  encoder 2: 4.3 s
+  encoder 0: 4.6 s
+  encoder 1: 4.5 s
+  encoder 2: 4.5 s
 
 Check 1 -- masked reconstruction on dev gauges (hidden gauges only; standardised units, so predicting 0 = the training mean)
   pre-trained encoder 0: 0.015
@@ -24,9 +24,9 @@ Check 1 -- masked reconstruction on dev gauges (hidden gauges only; standardised
 
 Exhibit 1 -- fitting
   n=50       0.7 s
-  n=100      1.6 s
-  n=250      6.1 s
-  n=1000    13.8 s
+  n=100      1.7 s
+  n=250      6.3 s
+  n=1000    14.1 s
 
 | Method | n = 50 | n = 100 | n = 250 | n = 1000 | Runs/cell |
 |---|---:|---:|---:|---:|---:|
@@ -63,6 +63,11 @@ Part 1 comparisons -- gap = mean(a) - mean(b); Rule A: |gap| > larger SD
     n=100   gap   33.2  larger SD   9.4  Rule A yes
     n=250   gap   40.4  larger SD   1.5  Rule A yes
     n=1000  gap   44.0  larger SD   0.4  Rule A yes
+  frozen_pretrained - finetuned
+    n=50    gap  -11.7  larger SD  21.1  Rule A no
+    n=100   gap   -3.6  larger SD   5.4  Rule A no
+    n=250   gap    3.6  larger SD   2.9  Rule A yes
+    n=1000  gap    5.3  larger SD   2.3  Rule A yes
 
 Q3 -- raw ridge -> pre-trained gain: architecture alone vs pre-training
   n=50    total  27.2  architecture  21.5 (79%)  pre-training  5.7
@@ -79,7 +84,7 @@ Q1 -- the incumbent
   ridge - scratch at 1000: 44.0 = 93% of ridge's error
 
 All 2000 labels, dev -- fitting (SD over inner seeds only)
-  n=2000    24.4 s
+  n=2000    24.9 s
 
 | Method | n = 2000 | Runs/cell |
 |---|---:|---:|
@@ -101,6 +106,8 @@ Comparisons at n = 2000 -- gap = mean(a) - mean(b); Rule A: |gap| > larger SD
     n=2000  gap   -7.3  larger SD   2.1  Rule A yes
   ridge_raw - scratch
     n=2000  gap   43.9  larger SD   0.2  Rule A yes
+  frozen_pretrained - finetuned
+    n=2000  gap    5.4  larger SD   2.1  Rule A yes
 
 The incumbent from 1000 to 2000 labels
   ridge 47.5 ± 0.4 -> 46.9 ± 0.2: change -0.6, larger SD 0.4
@@ -112,4 +119,4 @@ Check 3 -- re-run pre-training (seed 0) and cell n=50, draw 0
   all 8 dev MSEs identical: True
   -> PASS
 
-Total time 65 s
+Total time 67 s

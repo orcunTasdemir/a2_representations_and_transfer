@@ -105,7 +105,8 @@ PAIRS = [("frozen_pretrained", "scratch"),       # Q2, Q4
          ("finetuned", "scratch"),               # Q2
          ("frozen_random", "ridge_raw"),         # Q3: the architecture alone
          ("frozen_pretrained", "frozen_random"),  # Q3: what pre-training learned
-         ("ridge_raw", "scratch")]               # Q1: same panels, flexible model
+         ("ridge_raw", "scratch"),               # Q1: same panels, flexible model
+         ("frozen_pretrained", "finetuned")]     # memo: freeze or fine-tune, by n
 
 
 def summarise(runs):

@@ -146,6 +146,15 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
     scarce — where pre-training is meant to pay (memo Q3).
   - Cost of using them is small (~5 s pre-training per encoder).
 
+- **Agent's ranking of the usefulness-elsewhere points** (my call which
+  make the memo): 1 next panel family (memo Q3); 2 flagging unusual panels
+  (one sentence, as suggestion); 3 robustness (limitations — untestable
+  here); 4 reuse for other targets (keep for oral check). (S2)
+- **Freeze vs fine-tune by label count** (from `run.py`): frozen's means
+  lower at 50/100 but within spread; fine-tuned clearly better from 250.
+  Supports "freeze while labels are tens, fine-tune from a few hundred" for
+  the next family, with the caveat that the low end is unresolved. (S2)
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →

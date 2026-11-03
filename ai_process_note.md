@@ -63,6 +63,10 @@ Agent output I rejected on substance:
   indistinguishable from noise and negligible either way.
 
 Where I accepted a correction of my reading:
+- Memo Q2: "scratch gets a better result at 2,000" → it ties fine-tuned
+  (gap 0.0 vs SD 0.2); the case for either is simplicity or optionality,
+  not accuracy. Also called the deployed model "fine-tuned encoder plus
+  ridge" — it is a fine-tuned network; ridge is only in the frozen rows.
 - Q2: my first bracket ("scratch overtakes frozen between 100 and 250")
   needed a resolved ordering on both sides; frozen is never clearly ahead,
   so only "scratch clearly ahead by 1,000, marginally by 250" is supported.

@@ -333,3 +333,21 @@ by the agent: "better" → "tied; simplicity". Arguments against weighed —
 robustness, flagging unusual panels, reuse for other targets (mine) — all
 logged in `ideas.md` as untested suggestions. Deploy choice (scratch vs
 fine-tuned) pending.
+
+**Decided (mine): deploy the fine-tuned network at 2,000 labels.** Reason
+(mine): tied for best on dev (3.1 ± 0.2 vs scratch 3.0 ± 0.1), and it means
+Kestrel builds and keeps the pre-trained encoder, which supports frozen +
+ridge where labels are scarce, fine-tuning where they are not, and flagging
+unusual panels. Objection to be ready for: scratch is as accurate and
+simpler; the extra benefits are untested options, not findings.
+Wording fix (agent): it is a fine-tuned *network* (160 → 64 → 1, Adam), not
+"fine-tuned encoder plus ridge" — ridge appears only in the frozen rows.
+
+Frozen − fine-tuned (`run.py`, PAIRS extended): n=50 −11.7 vs SD 21.1 no;
+100 −3.6 vs 5.4 no; 250 +3.6 vs 2.9 yes; 1000 +5.3 vs 2.3 yes; 2000 +5.4 vs
+2.1 yes. Frozen "possibly better" at 50/100 (means only, consistent with
+Handout 9's freeze-at-tens); fine-tuned clearly better from 250.
+
+Open: test pipeline spec — (a) one network (e.g. seed 0, encoder 0) vs its
+own dev run, or (b) the same 5 seed/encoder runs as dev, averaged, no
+picking. Mine.
