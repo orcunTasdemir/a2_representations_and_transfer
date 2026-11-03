@@ -407,3 +407,15 @@ prove noise (the Q1 lesson); (3) a new family has no dev set — held-out
 evaluation panels must come out of the budget, or use the inner split;
 (4) frozen early, fine-tune from ~250; (5) transfer assumption → limitations.
 Costs/step gains to be added to `run.py` once framing is chosen.
+
+Q3 continued (mine): tie the budget to dollars even though value per
+accuracy is not given; noise level can be bounded, not measured; keep
+frozen + ridge for the early stages. Unsure on total and split.
+Agent: dollar framing as a stopping rule ("each further tranche of 250
+costs $1.1M; continue only if it saves more than that"); noise ≤ ~3.0 MPa²
+(typical miss ≤ ~1.7 MPa) from best dev 3.0 / test 2.87 — an upper bound.
+Check-set precision (inline formula √(2/m), normal errors — to go in
+run.py if quoted): 100 → ±14%, 200 → ±10%, 250 → ±9%.
+Options: A 800 train + 200 check = 1,000 ($4.4M); B 1,000 + 200 = 1,200
+($5.28M); C 1,000, inner split only ($4.4M). Agent's view: B, check set
+tested first and fixed, stages 100 → 250 → 500 → 1,000. Pending my choice.

@@ -178,6 +178,13 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   on the accuracy needed ("1,000 if typical miss < ~2 MPa is needed; 250
   if ~3 MPa will do").
 
+- **Dollar stopping rule** (S2): "each further tranche of 250 tests costs
+  $1.1M; continue only if the accuracy it buys is expected to save more
+  than that" — fewer panels the model is unsure about = fewer destructive
+  tests a year.
+- **Noise guess** (S2): at most ~3 MPa² (typical miss ≤ ~1.7 MPa), from
+  best dev 3.0 / test 2.87 — an upper bound, not a measurement.
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →
