@@ -366,3 +366,21 @@ are a measuring device, not a deployment; spread at 2,000 is ±0.2 on 3.1,
 so an ensemble removes almost nothing and would be an untested new
 pipeline; picking the best seed chases noise. Production norms: one model
 with recorded seed, retrain on schedule, refresh encoder, version, monitor.
+
+### Test pipeline — fixed BEFORE the test extract is read (2026-11-03)
+
+**Decided (mine): option (a).** The recommended pipeline, specified in full:
+
+1. Pre-train encoder 0: `pretrain(traces, seed=0)` on all 20,000 traces.
+2. Fine-tuned network: `supervised(X, y, ..., seed=0, encoder=encoder_0)`
+   on all 2,000 training labels (inside: 75% fit / 25% early stopping,
+   Adam at 1e-3, patience 60, max 800 epochs).
+3. Score once on `labeled_test.csv`.
+
+Its dev counterpart (same pipeline, `all_labels_runs.csv`, draw 0): **3.01**.
+For context, the 5 runs at n = 2,000 on dev: 3.01, 3.10, 2.67, 3.31, 3.19
+(mean ± SD 3.1 ± 0.2) — seed 0 is mid-range, i.e. typical. Seed 0 was chosen
+as the default, not for its score. Only this one number is computed on
+test; no other method, no baseline. The test/dev difference is explained by
+the data dictionary's note (test var(y) ~10% lower), not by a second look.
+Memo will also describe retraining and monitoring after deployment.
