@@ -351,3 +351,18 @@ Handout 9's freeze-at-tens); fine-tuned clearly better from 250.
 Open: test pipeline spec — (a) one network (e.g. seed 0, encoder 0) vs its
 own dev run, or (b) the same 5 seed/encoder runs as dev, averaged, no
 picking. Mine.
+
+**Decided (mine):** fine-tuned network confirmed (the extra step is cheap
+and possibly beneficial later). Usefulness-elsewhere points: (1) next panel
+family and (2) flagging unusual panels go in the memo as strong claims /
+suggestions; (3) robustness in limitations; (4) reuse for other targets
+only if space allows.
+
+Test pipeline: agent's opinion given (not yet my decision) — option (a),
+one encoder + one fine-tuned network, seeds fixed in advance (encoder 0,
+seed 0 = draw 0 of the n=2,000 runs), compared with its own dev run and
+shown beside the 5-run dev mean ± SD. Reasoning: the 3 encoders × 5 seeds
+are a measuring device, not a deployment; spread at 2,000 is ±0.2 on 3.1,
+so an ensemble removes almost nothing and would be an untested new
+pipeline; picking the best seed chases noise. Production norms: one model
+with recorded seed, retrain on schedule, refresh encoder, version, monitor.
