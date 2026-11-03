@@ -62,6 +62,14 @@ Agent output I rejected on substance:
   against the draw SD at 1,000 the change is 1.5×. Stated in the memo as
   indistinguishable from noise and negligible either way.
 
+- **Agent's contradictory explanation (caught).** Before the test score,
+  the agent said "a model's error doesn't scale with the variance of y" and
+  in the same breath that lower test variance could lower the test MSE. I
+  pointed out the contradiction. Corrected statement: var(y) sets the
+  predict-the-mean error exactly, but a good model's error is mostly the
+  residual it cannot explain, so lower var(y) can move it only if the
+  removed spread was in panels the model gets wrong — plausible, not a rule.
+
 Where I accepted a correction of my reading:
 - Memo Q2: "scratch gets a better result at 2,000" → it ties fine-tuned
   (gap 0.0 vs SD 0.2); the case for either is simplicity or optionality,

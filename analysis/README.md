@@ -35,7 +35,10 @@ only; versions used are pinned in `../requirements.txt`. It imports
 7. **Check 3**: re-runs pre-training for seed 0 and the n=50, draw 0 cell,
    and confirms the results are bit-identical.
 
-`labeled_test.csv` is not read by this script.
+`labeled_test.csv` is read once, at the end, to score the single
+recommended pipeline (fine-tuned network from encoder 0, seed 0, trained on
+all 2,000 labels). That pipeline was fixed in `NOTES.md` before test was
+read; no other model is scored on test and nothing is chosen from it.
 
 ## Outputs (`outputs/`)
 
@@ -48,4 +51,5 @@ only; versions used are pinned in `../requirements.txt`. It imports
 | `all_labels_comparisons.csv` | Rule A comparisons at n = 2,000 |
 | `part1_comparisons.csv` | Every Part 1 pair: means, SDs, gap, larger SD, Rule A |
 | `part1_split.csv` | Raw → pre-trained gain: architecture alone vs pre-training |
+| `test_score.txt` | The recommended pipeline's dev and test MSE / RMSE |
 | `checks.txt` | Full console log: the three checks and the Part 1 numbers |

@@ -161,6 +161,12 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   reconstruction-error flags. The study's 3 encoders × 5 seeds measured
   luck (± 0.2 at 2,000), they are not the deployment.
 
+- **Test vs dev one-sentence note** (S2): test var(y) ~10% lower (data
+  dictionary). That scales the predict-the-mean error exactly, but a good
+  model's error is its residual, so it can move only if the removed spread
+  was in panels the model gets wrong (e.g. fewer delaminated ones). Report
+  the difference; do not explain it with a second look at test.
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →

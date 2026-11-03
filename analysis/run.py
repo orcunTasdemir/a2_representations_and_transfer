@@ -5,13 +5,16 @@ Assignment 2, Part 1 -- Exhibit 1 and the checks behind it.
 
 Pre-trains the three encoders once, then fits every method at every label
 count and label draw, scoring each run on labeled_dev.csv. labeled_test.csv is
-not touched here.
+read once, at the end, to score the single recommended pipeline fixed in
+NOTES.md before test was looked at (fine-tuned network, encoder 0, seed 0,
+all 2,000 labels).
 
 Writes to analysis/outputs/:
     exhibit1_runs.csv      one row per run (n, draw, method, encoder, dev MSE)
     exhibit1.csv           one row per cell: mean, SD, number of runs
     exhibit1.md            the same table, formatted
-    checks.txt             the three sanity checks
+    test_score.txt         the recommended pipeline: dev vs test, once
+    checks.txt             the three sanity checks and every derived number
 """
 import sys
 import time
@@ -275,6 +278,20 @@ def main():
     log(f"  RMSE {r1['rmse']:.2f} -> {r2['rmse']:.2f} MPa;"
         f" the extra {n_all - 1000} tests cost ${(n_all - 1000) * 4400:,}")
     log(f"  for reference: 750 tests from 250 -> 1000 cost ${750 * 4400:,}")
+
+    # ---- the recommended pipeline, scored ONCE on test ---------------------
+    # Fixed in NOTES.md before test was read: encoder 0, network seed 0, all
+    # 2,000 labels. Nothing else is scored on test, and nothing is chosen here.
+    Xte, yte = load("test")
+    test_mse = supervised(Xtr, ytr, Xte, yte, seed=0, encoder=encoders[0])
+    dev_mse = float(runs_all[(runs_all.method == "finetuned")
+                             & (runs_all.draw == 0)]["dev_mse"].iloc[0])
+    lines = [f"Recommended pipeline: fine-tuned network, encoder 0, seed 0, all {n_all} labels",
+             f"  dev  MSE {dev_mse:.2f}  RMSE {np.sqrt(dev_mse):.2f} MPa",
+             f"  test MSE {test_mse:.2f}  RMSE {np.sqrt(test_mse):.2f} MPa",
+             f"  test - dev {test_mse - dev_mse:+.2f}"]
+    (OUT / "test_score.txt").write_text("\n".join(lines) + "\n")
+    log("\n" + "\n".join(lines))
 
     # ---- check 3: same numbers on a re-run --------------------------------
     log("\nCheck 3 -- re-run pre-training (seed 0) and cell n=50, draw 0")
