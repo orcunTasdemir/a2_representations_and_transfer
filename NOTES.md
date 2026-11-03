@@ -314,3 +314,15 @@ Incumbent 1,000 → 2,000: 47.5 ± 0.4 → 46.9 ± 0.2, change −0.6 vs larger 
 $4.4M. Caveat: the two SDs measure different things (draws at 1,000, inner
 seeds only at 2,000). At 2,000: scratch vs frozen clear (5.4 vs 2.1);
 fine-tuned vs scratch gap 0.0 (tie); ridge − scratch 43.9.
+
+**Decided (mine): the incumbent's 1,000 → 2,000 change (−0.6) is not
+claimed as real.** My argument: the 5 runs at 2,000 share the same panels,
+so the 0.2 SD omits label-draw variation and understates the uncertainty;
+against the draw SD at 1,000 (0.4) the change is only 1.5×. Agent's
+counterpoint: direction consistent with every earlier step, so a tiny real
+gain is plausible but unconfirmed. Conclusion holds either way.
+Phrasing: "A further 1,000 tests moved the incumbent by 0.6 MPa² (typical
+miss 6.89 → 6.85 MPa), a change this design cannot distinguish from noise
+and too small to matter even if real."
+Rule A note: defined for Exhibit 1 cells (SDs include draws); at n = 2,000
+the SDs are narrower, so it is applied with judgment there.

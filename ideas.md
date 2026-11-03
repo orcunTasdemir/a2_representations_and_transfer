@@ -119,6 +119,15 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   250–1,000; the means crossed at 100–250. Not required anywhere; at most a
   phrase in the process note §3. (S1)
 
+- **Robust conclusion for memo Q1:** whether the incumbent's 0.6 gain at
+  2,000 is real or noise, the decision is the same — $4.4M of tests for
+  6.89 → 6.85 MPa typical miss vs ~1.7 MPa for a network. (S2)
+- **Networks still gain from labels; the incumbent doesn't:** scratch
+  3.5 → 3.0 (SD 0.1) from 1,000 → 2,000. Same panels, more labels help the
+  model whose shape fits. (S2) — if used, add the scratch change to run.py.
+- **Scratch vs fine-tuned at 2,000: dead tie** (gap 0.0, SD 0.2). Neither
+  "wins"; matters for naming the deployed pipeline. (S2)
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →
@@ -136,6 +145,8 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   control row's SD covers label draws only, not encoder-to-encoder
   variation. A different random layer could do somewhat better or worse;
   "the architecture alone buys ~80%" rests on one random draw. (S1)
+- **n = 2,000 SDs cover inner seeds only** (one possible set of panels);
+  they understate uncertainty relative to Exhibit 1's SDs. (S2)
 - At n = 50, every inner decision (ridge penalty, stopping epoch) rests on
   13 panels — one reason the n = 50 SDs are large. (S1)
 - Test var(y) is ~10% lower than dev; expect and report a small difference,

@@ -55,6 +55,13 @@ Agent output I rejected on substance:
   but noted pairing does remove shared draw noise — my reason is the
   post-hoc choice, not that pairing is uninformative.
 
+- **Agent's mechanical Rule A verdict at n = 2,000 (overridden).** The
+  run flagged the incumbent's 1,000 → 2,000 change (−0.6 vs larger SD 0.4)
+  as passing Rule A. I argued it cannot be called real: all five runs at
+  2,000 use the same panels, so that SD leaves out which-panels variation;
+  against the draw SD at 1,000 the change is 1.5×. Stated in the memo as
+  indistinguishable from noise and negligible either way.
+
 Where I accepted a correction of my reading:
 - Q2: my first bracket ("scratch overtakes frozen between 100 and 250")
   needed a resolved ordering on both sides; frozen is never clearly ahead,
