@@ -164,3 +164,15 @@ surpass the other two. Scratch and fine-tuned will stay the same or get
 very slightly better; the ordering will not change. Scratch will win: the
 labelled data is already enough for this architecture to learn the problem,
 since its shape suits this problem.
+
+---
+
+## Addendum — the single test score, written 2026-11-03 before it was run
+
+**Mine.** Even if the test MSE comes out slightly lower than the dev 3.01, it
+will most likely not be decisive: the difference will be smaller than the
+spread.
+
+Made checkable (agreed wording): the test MSE will differ from the dev 3.01
+by less than the run-to-run spread on dev at n = 2,000 (SD 0.2; runs ranged
+2.67–3.31). The test score is one run, so it has no SD of its own.
