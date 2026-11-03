@@ -17,8 +17,11 @@ the brief cites by section, Handout 6 the background.
 
 Read `NOTES.md` at the start of every session. Then `part1_answers.md` (the
 settled Part 1 reading), `ideas.md` (points not yet used) and the working
-drafts `memo.md` and `ai_process_note.md`. `expectations.md` holds what I
-expected before the table was run.
+deliverables `memo.md` / `memo.pdf` and `ai_process_note.md` / `.pdf`
+(working material in `drafts/`). `expectations.md` holds what I expected
+before the table was run. PDFs: `bash drafts/render_pdf.sh memo.md
+memo.pdf` (memo at 10.5pt; process note at 10pt with tighter spacing — see
+NOTES). Numbers: `python analysis/check_memo_numbers.py`.
 
 ## Hard rules
 

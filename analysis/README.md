@@ -45,6 +45,14 @@ recommended pipeline (fine-tuned network from encoder 0, seed 0, trained on
 all 2,000 labels). That pipeline was fixed in `NOTES.md` before test was
 read; no other model is scored on test and nothing is chosen from it.
 
+## Checking the memo
+
+    python analysis/check_memo_numbers.py
+
+Run after `run.py`. Lists any number in `../memo.md` that no file in
+`outputs/` produces at the precision the memo states it. Kept out of
+`run.py` so a clean copy without a memo still runs end to end.
+
 ## Outputs (`outputs/`)
 
 | File | Contents |

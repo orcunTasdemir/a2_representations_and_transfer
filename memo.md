@@ -1,108 +1,68 @@
-# MEMO — WORKING DRAFT (not for submission)
-
-**To:** Head of Quality, Kestrel Composites
-**Re:** Should Kestrel budget 2,000 more destructive tests? A second opinion.
-
-Status, end of session 1 (2026-11-02): Exhibit 1 is built. **All four
-Part 1 questions are settled — final versions in `part1_answers.md`**, to be
-merged into the memo sections below (they overlap; see `ideas.md` on page
-economy). Every Part 2 answer is still open. Nothing
-below is prose yet: these are my points and the numbers behind them, to be
-written up together once the reading is complete. Every number is from
-`analysis/outputs/` (`python analysis/run.py`).
-
-Limits: at most 2 pages of prose; Exhibit 1 does not count.
-
+---
+title: "Memo"
 ---
 
-## Recommendation (first paragraph — to be written last)
+<div class="head">
+**To:** Head of Quality, Kestrel Composites\
+**From:** Orcun Tasdemir\
+**Date:** 3 November 2026\
+**Re:** The proposal to fund 2,000 more destructive tests ($8.8 million): a second opinion
+</div>
 
-TBD.
+**Recommendation.** Do not fund the 2,000 additional tests. They would not fix the current model: its error has stopped falling, because a straight-line model cannot represent how strength arises. Replace it now with a small neural network trained on the 2,000 panels already tested and built on the 20,000 untested gauge traces: on 1,000 tested panels held out from all fitting, its typical error is **1.7 MPa against the current model's 6.8 MPa**. For the next panel family, budget **up to 1,200 destructive tests ($5.28M)** — 1,000 to train on and 200 kept aside to check accuracy — released in stages and stopped as soon as a further batch costs more than it saves. That ceiling is $3.52M (40%) below the proposal, before any early stop.
 
-## 1. Will more destructive tests fix the current model?
+**How this was measured.** Every method was fitted on 50, 100, 250 and 1,000 tested panels, each time on five different random selections of panels, and scored on 1,000 further tested panels it never saw (Exhibit 1). Error is the mean squared error (MSE, in MPa²); its square root, the typical miss in MPa, is shown in brackets. A difference smaller than the run-to-run standard deviation (SD) is not read as a difference. Predicting the average strength for every panel scores 188.9 (13.7 MPa).
 
-**Settled in substance (Part 1 Q1):**
+### 1. Will more destructive tests fix the current model? No.
 
-- The incumbent (ridge on the 160 raw gauges) does learn from the gauges:
-  dev MSE 60.7 at n = 50 and 47.5 at n = 1,000, against 188.9 for predicting
-  the mean (about 4× lower; it explains about 68% → 75% of the variation).
-- It stops improving: 48.2 at n = 250, 47.5 at n = 1,000. Quadrupling the
-  labels bought 0.7 MPa², about the size of the SDs (0.6, 0.4).
-- The limit is the model's shape, not a shortage of data. On the same 1,000
-  panels a network from scratch reaches 3.5 ± 0.1, so the noise floor is at
-  most 3.5 and 44.0 MPa² (93%) of the incumbent's error is shape, not noise.
-- Why, from the process: strength needs resin flow *and* cure; the two
-  failure modes multiply, and a surplus in one cannot make up for a deficit
-  in the other. A weighted sum of gauges assumes exactly that compensation.
-  Separately, contamination acts through a threshold (nothing below, sharp
-  fall above), which a straight line cannot represent either.
-- The floor is specific to a model linear in *these* columns. A linear model
-  on different features (e.g. a flow × cure product) need not have it.
+**The number that settles it:** going from 250 to 1,000 tested panels — 750 tests, $3.3M — improved the current model by **0.7 MPa²** (48.2 → 47.5), about the size of its run-to-run spread. Using all 2,000 panels moved it a further 0.6 (typical miss 6.89 → 6.85 MPa): a change this design cannot separate from noise, and too small to matter even if real.
 
-**Open:** which single number "settles it" for the Head of Quality.
-Anticipated objection: the table stops at 1,000 — answered by the flat
-250 → 1,000 step plus the 3.5 that a flexible model reaches.
+The model is not short of data. It does learn from the gauges — its error falls from 60.7 at 50 panels to 47.5 at 1,000, where it is 3.98× better than predicting the average and explains 75% of the variation — but it stops there. On the **same** 1,000 panels a neural network reaches **3.5 ± 0.1** where the current model sits at **47.5 ± 0.4**, so whatever noise the gauges cannot explain is at most about 3.5, and **44.0 MPa², 93% of the current model's error, is the model's form, not noise.** More tests cannot remove that.
 
-## 2. Can the unlabelled traces be made useful?
+The reason is the process itself. Process Engineering's account is that resin flow and cure must *both* go right, that the two failure modes multiply, and that a surplus in one cannot make up for a deficit in the other. A weighted sum of gauges assumes exactly that trade-off. Contamination acts through a threshold — no effect below it, a sharp fall above — which a straight line cannot represent either. The limit belongs to a model that is linear in these 160 raw gauges; it is not a limit of the data.
 
-**Decided (mine): deploy the fine-tuned network** at 2,000 labels: dev
-3.1 ± 0.2 MSE (typical miss 1.7 MPa) against the incumbent's 46.9 (6.8
-MPa). Tied with scratch; chosen because it builds and keeps the encoder
-(frozen where labels are scarce, fine-tune where not, flag unusual panels).
-Traces: "yes, but not for accuracy at today's count" — value for the next
-family and for flagging. Retraining + monitoring sentence required.
-Inputs settled in `part1_answers.md`: vs scratch,
-pre-training buys nothing resolvable; vs the incumbent, frozen pre-trained
-wins clearly at every n (33.5 vs 60.7 at 50; 8.9 vs 47.5 at 1,000), ~80% of
-that from the architecture alone. Note the table ends at
-1,000 labels while Kestrel holds 2,000.
+### 2. Can the unlabelled traces be made useful? Yes — but at today's label count, not for accuracy.
 
-## 3. How many tests should the next panel family budget?
+The traces are used by *pre-training*: hide 30% of each panel's gauges and train a network to rebuild them. No destructive test is needed, and the network learns the few underlying conditions behind the 160 redundant gauges. Freezing that network and fitting the current model's method on its 64 outputs beats the current model at every label count, clearly (33.5 vs 60.7 at 50 panels; 8.9 vs 47.5 at 1,000).
 
-**Decided (mine):** budget **up to 1,200 tested panels ($5.28M)** — 1,000
-for training plus a 200-panel check set — against the engineer's 2,000
-($8.8M): $3.52M (40%) less. A ceiling, released in stages: check set first
-($0.88M), then training panels to 100 → 250 → 500 → 1,000; refit and score on
-the check set at each; continue only if the next tranche is expected to
-save more than it costs. Frozen + ridge at the small stages, fine-tuned
-from ~250. Either side (dev, this family): 250 training → fine-tuned 7.2
-(2.7 MPa); 1,000 → 3.6 (1.9 MPa), the 250 → 1,000 step halves the error for
-$2.2M+$1.1M of training panels; 2,000 → 3.1 (1.7 MPa) for $4.4M more.
-Noise ≤ 3.0 MPa² (≤ 1.7 MPa typical miss), an upper bound. Spec never
-stated → condition the number on it. 500 has no measured point.
-Wording: "test" is ambiguous — say "destructive test" / "check set" /
-never mix with our test file. All numbers in `checks.txt`,
-`budget_stages.csv`.
+**Most of that gain is not pre-training.** The same network with random, never-trained weights captures **79–82%** of the improvement: at 1,000 panels, pre-training adds 7.1 of the 38.6 MPa² gained. Without this control, pre-training would have been credited with all of it. Passing the gauges through *any* layer of threshold-like units helps, because thresholds, and sums of them, are the shapes the process needs (the threshold, the multiplication). Pre-training's own contribution, 7–8 MPa², is measurable from 100 panels; at 50 it is smaller than its spread.
 
-## Test-extract score
+**Against a network trained from scratch on the tested panels alone, pre-training buys nothing this study can resolve.** The frozen network has lower average error at 50 and 100 panels (33.5 vs 47.0; 17.6 vs 23.3), but both gaps are smaller than their spread. The ordering changes between 100 and 250 panels: from 250 the network trained from scratch is ahead — marginally at 250, clearly at 1,000 (3.5 vs 8.9) — and below 250 the two cannot be told apart. It overtakes because its features are learned for strength, while the frozen network's were fixed to rebuild gauges; and it does so within a few hundred panels, far earlier than the usual rule of tens of thousands, because this is a simple problem driven by a handful of conditions. Starting the network from the pre-trained one ("fine-tuning") makes no measurable difference: too noisy to tell at 50–100 panels, genuinely equal from 250 (3.6 vs 3.5 at 1,000; 3.1 vs 3.0 at 2,000).
 
-Done (`analysis/outputs/test_score.txt`): fine-tuned network (encoder 0,
-seed 0, all 2,000 labels) — dev MSE 3.01 (RMSE 1.74 MPa), test MSE 2.87
-(RMSE 1.69 MPa). Difference −0.14, within the dev seed-to-seed spread (SD
-0.24). Sentence: slightly lower on test, consistent with test's ~10% lower
-variance in strength, and within what retraining alone moves the score.
+**What to deploy now:** the fine-tuned network trained on all 2,000 panels — **3.1 ± 0.2 (1.7 MPa) against the current model's 46.9 (6.8 MPa)**. It ties the network trained from scratch; I choose it because building the pre-trained network takes seconds and keeps it available for the next panel family, where tested panels are scarce, and for flagging new panels whose gauges it cannot rebuild — panels unlike anything seen before, and natural candidates for a destructive test. Run it as a single network with its random seed recorded, retrain it as tests accumulate, and refresh the pre-training as traces accumulate.
 
-## What the evidence does not establish
+### 3. How many tests should the next panel family budget? Up to 1,200 ($5.28M), in stages.
 
-Collected so far:
-- Nothing between 1,000 and 2,000 labels (Kestrel's current count), nor
-  beyond.
-- The noise floor is bounded above (≤ 3.5), not measured.
-- Possible point: reconstruction error as a check that new panels resemble
-  the historical traces (drift), relevant to a new panel family.
+Test 200 check panels first ($0.88M) and set them aside; they only ever measure accuracy, to about ±10%. Then test training panels in batches — to 100, 250, 500 and 1,000 — refitting after each and scoring on the check panels: the frozen network while panels number in the tens to low hundreds, fine-tuning from about 250. **Continue only if the next batch is expected to save more than it costs** in tests avoided or weak panels caught; each further 250 training panels costs $1.1M. Kestrel has to supply that value; this study cannot.
 
----
+Either side of 1,000, on this family: at 250 training panels the network's error is 7.2 (2.7 MPa) for $1.98M in all; reaching 1,000 halves it to 3.6 (1.9 MPa); going on to 2,000 bought only 3.1 (1.7 MPa) for $4.4M more. So **1,000 is the number if the specification needs a typical miss near 2 MPa; stop at 250 if about 3 MPa will do.** No budget gets below the noise, at most 3.0 (1.7 MPa) on this family. Against the proposed 2,000 tests ($8.8M), the full ceiling saves $3.52M.
 
-## Exhibit 1. Dev MSE (MPa²), mean ± SD over runs. Lower is better.
+**Held-out check.** The recommended pipeline was fixed before the final extract was opened and scored on it once: **2.87 (1.69 MPa) against 3.01 (1.74 MPa) on the comparison extract**. The difference, −0.14, is smaller than the 0.24 SD the same network shows across retraining runs, and consistent with that extract's slightly lower spread of strength.
 
-| Method | n = 50 | n = 100 | n = 250 | n = 1,000 | Runs/cell |
+### What this evidence does not establish
+
+- **That the next family behaves like this one.** Every curve above is this family's; staging exists so the new family's own numbers decide.
+- **Anything beyond 2,000 panels**, and the spread at 2,000 reflects retraining only, not which panels were tested.
+- **The noise level** — bounded at about 3, not measured.
+- **Pre-training's value at 50–100 panels**, where it should matter most and where the next family starts: the spread is too wide to tell.
+- **The 80/20 split beyond one random network**, since only one was tested.
+- **Robustness to changing conditions**, or the flagging use: all panels come from one autoclave and period.
+
+<div class="exhibit">
+
+### Exhibit 1. Five methods at four label counts, scored on the 1,000-panel comparison extract
+
+Mean squared error in MPa², mean ± standard deviation over runs; typical miss (RMSE, MPa) in brackets. Lower is better.
+
+| Method | 50 panels | 100 panels | 250 panels | 1,000 panels | Runs per cell |
 |---|---:|---:|---:|---:|---:|
-| Ridge on the 160 raw gauges (incumbent) | 60.7 ± 5.6 | 56.5 ± 6.3 | 48.2 ± 0.6 | 47.5 ± 0.4 | 5 |
-| Frozen pre-trained encoder + ridge | 33.5 ± 12.0 | 17.6 ± 5.4 | 10.8 ± 2.9 | 8.9 ± 2.3 | 15 |
-| Frozen random encoder + ridge (control) | 39.2 ± 6.6 | 25.6 ± 3.5 | 18.6 ± 0.8 | 16.0 ± 0.2 | 5 |
-| Network from scratch | 47.0 ± 17.8 | 23.3 ± 9.4 | 7.8 ± 1.5 | 3.5 ± 0.1 | 5 |
-| Fine-tuned encoder | 45.2 ± 21.1 | 21.3 ± 5.0 | 7.2 ± 0.5 | 3.6 ± 0.3 | 5 |
-| Reference: predict the mean of the n labels, no gauges | 190.2 ± 2.5 | 189.4 ± 0.6 | 189.4 ± 0.3 | 188.9 ± 0.1 | 5 |
+| Current model: ridge on the 160 raw gauges | 60.7 ± 5.6 (7.8) | 56.5 ± 6.3 (7.5) | 48.2 ± 0.6 (6.9) | 47.5 ± 0.4 (6.9) | 5 |
+| Frozen pre-trained network + ridge | 33.5 ± 12.0 (5.8) | 17.6 ± 5.4 (4.2) | 10.8 ± 2.9 (3.3) | 8.9 ± 2.3 (3.0) | 15 |
+| Frozen *random* network + ridge (control) | 39.2 ± 6.6 (6.3) | 25.6 ± 3.5 (5.1) | 18.6 ± 0.8 (4.3) | 16.0 ± 0.2 (4.0) | 5 |
+| Network trained from scratch | 47.0 ± 17.8 (6.9) | 23.3 ± 9.4 (4.8) | 7.8 ± 1.5 (2.8) | 3.5 ± 0.1 (1.9) | 5 |
+| Fine-tuned pre-trained network | 45.2 ± 21.1 (6.7) | 21.3 ± 5.0 (4.6) | 7.2 ± 0.5 (2.7) | 3.6 ± 0.3 (1.9) | 5 |
+| *Reference: predict the average of the tested panels* | 190.2 ± 2.5 (13.8) | 189.4 ± 0.6 (13.8) | 189.4 ± 0.3 (13.8) | 188.9 ± 0.1 (13.7) | 5 |
 
-Note to self: exhibit caption and whether to add RMSE (MPa) for a
-non-modeller reader are still to decide.
+Runs: five random selections of tested panels per label count; the frozen pre-trained row also crosses them with three independent pre-training runs; fine-tuning on selection *r* starts from pre-training run *r* mod 3. Pre-training uses the 20,000 untested traces only. The 2,000-panel figures quoted in the text use all tested panels with five retraining seeds (`analysis/outputs/all_labels.md`). Every figure in this memo is produced by `python analysis/run.py`.
+
+</div>

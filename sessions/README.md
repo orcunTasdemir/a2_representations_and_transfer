@@ -13,6 +13,14 @@ Agent used: Claude Code (VS Code extension, macOS)
 |---|---|---|---|
 | `a2-session-0-failed` | 2026-10-21 | macOS | Failed start: my opening message, answered only by "OAuth session expired". No work done. Included for completeness. |
 | `a2-session-1` | 2026-10-20 → 2026-11-02 | macOS | Setup; protocol and pre-training concepts; eight expectations written; `analysis/run.py` and Exhibit 1; all four Part 1 questions read and settled (`part1_answers.md`). |
+| `a2-session-2` | 2026-11-02 → 2026-11-03 | macOS | Memo decisions (n = 2,000 run, deployment choice, test pipeline fixed then scored once, staged budget); memo and process note written. |
+
+Sessions 1 and 2 are the same VS Code conversation worked in twice, so
+`a2-session-2.jsonl` contains `a2-session-1.jsonl` as its opening part.
+Both are submitted unedited: the first is what existed at the end of
+session 1. Verified in Python: the 2,199,952 bytes (806 records) of
+`a2-session-1.jsonl` are byte-identical to the start of
+`a2-session-2.jsonl` (1,493 records).
 
 ## Known gaps
 

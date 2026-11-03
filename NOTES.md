@@ -442,3 +442,35 @@ n=2,000 and test outputs unchanged by this run; checks PASS.
 **All memo decisions made.** Next: memo prose (merge Part 1 into the memo
 sections), process note to 1 page, optional extension (not yet discussed),
 final clean-copy reproducibility check, sessions export, zip.
+
+## Session 2 close — 2026-11-03. Memo and process note written.
+
+- Working drafts moved to `drafts/` (`memo_working.md`,
+  `ai_process_note_material.md`).
+- **`memo.md` → `memo.pdf`**: 2 pages of prose at 10.5pt Charter (no
+  shrinking needed; ~¼ page spare on p.2) + Exhibit 1 alone on p.3 with
+  RMSE in brackets. Delegated to the agent to write from our decisions (my
+  instruction). Covers: recommendation first; memo Q1–Q3 in order with
+  Part 1 Q1–Q4 merged in; test 2.87 vs dev 3.01; limitations.
+  Rendered by `drafts/render_pdf.sh` (pandoc → HTML → headless Chrome,
+  90 s timeout; it did not hang this time).
+- **`ai_process_note.md`** (+ `ai_process_note.pdf` render): fits 1 page
+  at 10pt, line-height 1.25, margins 0.6/0.7in — formatting, not cuts, per
+  my heuristic. Command:
+  `EXTRA_CSS='html{line-height:1.25} li{margin:0.05em 0} @page{margin:0.6in 0.7in}' bash drafts/render_pdf.sh ai_process_note.md ai_process_note.pdf 10pt`
+- **`analysis/check_memo_numbers.py`**: all 102 memo numbers found in
+  outputs; verified it flags 3 planted wrong numbers.
+- Agent fixes during drafting: added the incumbent's n=50 figure (Part 1 Q1
+  asks 50 vs 1,000); header layout; exhibit column width.
+
+### Open — next session starts here
+
+1. Optional extension (+4) — my choice of option; likely "beat the
+   incumbent honestly" (flow × cure features, ridge only).
+2. If the extension adds memo text: re-render, re-check length and numbers.
+3. Update the process note's session count ("two working sessions") and
+   `sessions/README.md` after the last session.
+4. Final: clean-copy run from a fresh clone, `check_memo_numbers.py`,
+   export sessions, read the export for anything private, zip as
+   `tasdemir_orcun_a2.zip` without `data/`, `.venv`, `drafts/`? (decide).
+5. Deadline Thursday 2026-11-05, 6:00 PM Central.

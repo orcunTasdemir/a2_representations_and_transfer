@@ -1,0 +1,108 @@
+# MEMO — WORKING DRAFT (not for submission)
+
+**To:** Head of Quality, Kestrel Composites
+**Re:** Should Kestrel budget 2,000 more destructive tests? A second opinion.
+
+Status, end of session 1 (2026-11-02): Exhibit 1 is built. **All four
+Part 1 questions are settled — final versions in `part1_answers.md`**, to be
+merged into the memo sections below (they overlap; see `ideas.md` on page
+economy). Every Part 2 answer is still open. Nothing
+below is prose yet: these are my points and the numbers behind them, to be
+written up together once the reading is complete. Every number is from
+`analysis/outputs/` (`python analysis/run.py`).
+
+Limits: at most 2 pages of prose; Exhibit 1 does not count.
+
+---
+
+## Recommendation (first paragraph — to be written last)
+
+TBD.
+
+## 1. Will more destructive tests fix the current model?
+
+**Settled in substance (Part 1 Q1):**
+
+- The incumbent (ridge on the 160 raw gauges) does learn from the gauges:
+  dev MSE 60.7 at n = 50 and 47.5 at n = 1,000, against 188.9 for predicting
+  the mean (about 4× lower; it explains about 68% → 75% of the variation).
+- It stops improving: 48.2 at n = 250, 47.5 at n = 1,000. Quadrupling the
+  labels bought 0.7 MPa², about the size of the SDs (0.6, 0.4).
+- The limit is the model's shape, not a shortage of data. On the same 1,000
+  panels a network from scratch reaches 3.5 ± 0.1, so the noise floor is at
+  most 3.5 and 44.0 MPa² (93%) of the incumbent's error is shape, not noise.
+- Why, from the process: strength needs resin flow *and* cure; the two
+  failure modes multiply, and a surplus in one cannot make up for a deficit
+  in the other. A weighted sum of gauges assumes exactly that compensation.
+  Separately, contamination acts through a threshold (nothing below, sharp
+  fall above), which a straight line cannot represent either.
+- The floor is specific to a model linear in *these* columns. A linear model
+  on different features (e.g. a flow × cure product) need not have it.
+
+**Open:** which single number "settles it" for the Head of Quality.
+Anticipated objection: the table stops at 1,000 — answered by the flat
+250 → 1,000 step plus the 3.5 that a flexible model reaches.
+
+## 2. Can the unlabelled traces be made useful?
+
+**Decided (mine): deploy the fine-tuned network** at 2,000 labels: dev
+3.1 ± 0.2 MSE (typical miss 1.7 MPa) against the incumbent's 46.9 (6.8
+MPa). Tied with scratch; chosen because it builds and keeps the encoder
+(frozen where labels are scarce, fine-tune where not, flag unusual panels).
+Traces: "yes, but not for accuracy at today's count" — value for the next
+family and for flagging. Retraining + monitoring sentence required.
+Inputs settled in `part1_answers.md`: vs scratch,
+pre-training buys nothing resolvable; vs the incumbent, frozen pre-trained
+wins clearly at every n (33.5 vs 60.7 at 50; 8.9 vs 47.5 at 1,000), ~80% of
+that from the architecture alone. Note the table ends at
+1,000 labels while Kestrel holds 2,000.
+
+## 3. How many tests should the next panel family budget?
+
+**Decided (mine):** budget **up to 1,200 tested panels ($5.28M)** — 1,000
+for training plus a 200-panel check set — against the engineer's 2,000
+($8.8M): $3.52M (40%) less. A ceiling, released in stages: check set first
+($0.88M), then training panels to 100 → 250 → 500 → 1,000; refit and score on
+the check set at each; continue only if the next tranche is expected to
+save more than it costs. Frozen + ridge at the small stages, fine-tuned
+from ~250. Either side (dev, this family): 250 training → fine-tuned 7.2
+(2.7 MPa); 1,000 → 3.6 (1.9 MPa), the 250 → 1,000 step halves the error for
+$2.2M+$1.1M of training panels; 2,000 → 3.1 (1.7 MPa) for $4.4M more.
+Noise ≤ 3.0 MPa² (≤ 1.7 MPa typical miss), an upper bound. Spec never
+stated → condition the number on it. 500 has no measured point.
+Wording: "test" is ambiguous — say "destructive test" / "check set" /
+never mix with our test file. All numbers in `checks.txt`,
+`budget_stages.csv`.
+
+## Test-extract score
+
+Done (`analysis/outputs/test_score.txt`): fine-tuned network (encoder 0,
+seed 0, all 2,000 labels) — dev MSE 3.01 (RMSE 1.74 MPa), test MSE 2.87
+(RMSE 1.69 MPa). Difference −0.14, within the dev seed-to-seed spread (SD
+0.24). Sentence: slightly lower on test, consistent with test's ~10% lower
+variance in strength, and within what retraining alone moves the score.
+
+## What the evidence does not establish
+
+Collected so far:
+- Nothing between 1,000 and 2,000 labels (Kestrel's current count), nor
+  beyond.
+- The noise floor is bounded above (≤ 3.5), not measured.
+- Possible point: reconstruction error as a check that new panels resemble
+  the historical traces (drift), relevant to a new panel family.
+
+---
+
+## Exhibit 1. Dev MSE (MPa²), mean ± SD over runs. Lower is better.
+
+| Method | n = 50 | n = 100 | n = 250 | n = 1,000 | Runs/cell |
+|---|---:|---:|---:|---:|---:|
+| Ridge on the 160 raw gauges (incumbent) | 60.7 ± 5.6 | 56.5 ± 6.3 | 48.2 ± 0.6 | 47.5 ± 0.4 | 5 |
+| Frozen pre-trained encoder + ridge | 33.5 ± 12.0 | 17.6 ± 5.4 | 10.8 ± 2.9 | 8.9 ± 2.3 | 15 |
+| Frozen random encoder + ridge (control) | 39.2 ± 6.6 | 25.6 ± 3.5 | 18.6 ± 0.8 | 16.0 ± 0.2 | 5 |
+| Network from scratch | 47.0 ± 17.8 | 23.3 ± 9.4 | 7.8 ± 1.5 | 3.5 ± 0.1 | 5 |
+| Fine-tuned encoder | 45.2 ± 21.1 | 21.3 ± 5.0 | 7.2 ± 0.5 | 3.6 ± 0.3 | 5 |
+| Reference: predict the mean of the n labels, no gauges | 190.2 ± 2.5 | 189.4 ± 0.6 | 189.4 ± 0.3 | 188.9 ± 0.1 | 5 |
+
+Note to self: exhibit caption and whether to add RMSE (MPa) for a
+non-modeller reader are still to decide.
