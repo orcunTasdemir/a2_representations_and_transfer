@@ -138,4 +138,9 @@ Found: the paired per-draw comparison (above).
   split, Q1 ratios) was first computed ad hoc, then moved into `run.py`;
   the re-run reproduced each quoted value, and `exhibit1_runs.csv` came out
   byte-identical to the earlier run (checked with `cmp`).
-- Test extract untouched so far.
+- Test extract read once: the pipeline (fine-tuned network, encoder 0,
+  seed 0, all 2,000 labels) and its dev counterpart (3.01) were written
+  into NOTES.md and pushed before test was read; seed 0 is the default, not
+  the best of the five; my expectation (difference within the dev seed
+  spread) was recorded first. Result 2.87 vs 3.01, within the spread.
+  Nothing else was scored on test.

@@ -176,3 +176,7 @@ spread.
 Made checkable (agreed wording): the test MSE will differ from the dev 3.01
 by less than the run-to-run spread on dev at n = 2,000 (SD 0.2; runs ranged
 2.67–3.31). The test score is one run, so it has no SD of its own.
+
+**Result (added after the run).** Test MSE 2.87 vs dev 3.01: −0.14, smaller
+than the dev run-to-run SD (0.24) and inside the 2.67–3.31 range. As
+expected: slightly lower, not decisive.

@@ -11,9 +11,9 @@ Check 2 -- no panel appears in two files
   -> PASS
 
 Pre-training 3 encoders on 20000 unlabelled traces
-  encoder 0: 4.6 s
-  encoder 1: 4.5 s
-  encoder 2: 4.5 s
+  encoder 0: 4.4 s
+  encoder 1: 4.4 s
+  encoder 2: 4.4 s
 
 Check 1 -- masked reconstruction on dev gauges (hidden gauges only; standardised units, so predicting 0 = the training mean)
   pre-trained encoder 0: 0.015
@@ -24,9 +24,9 @@ Check 1 -- masked reconstruction on dev gauges (hidden gauges only; standardised
 
 Exhibit 1 -- fitting
   n=50       0.7 s
-  n=100      1.7 s
-  n=250      6.3 s
-  n=1000    14.1 s
+  n=100      1.6 s
+  n=250      6.1 s
+  n=1000    13.7 s
 
 | Method | n = 50 | n = 100 | n = 250 | n = 1000 | Runs/cell |
 |---|---:|---:|---:|---:|---:|
@@ -84,7 +84,7 @@ Q1 -- the incumbent
   ridge - scratch at 1000: 44.0 = 93% of ridge's error
 
 All 2000 labels, dev -- fitting (SD over inner seeds only)
-  n=2000    24.9 s
+  n=2000    24.2 s
 
 | Method | n = 2000 | Runs/cell |
 |---|---:|---:|
@@ -114,9 +114,14 @@ The incumbent from 1000 to 2000 labels
   RMSE 6.89 -> 6.85 MPa; the extra 1000 tests cost $4,400,000
   for reference: 750 tests from 250 -> 1000 cost $3,300,000
 
+Recommended pipeline: fine-tuned network, encoder 0, seed 0, all 2000 labels
+  dev  MSE 3.01  RMSE 1.74 MPa
+  test MSE 2.87  RMSE 1.69 MPa
+  test - dev -0.14
+
 Check 3 -- re-run pre-training (seed 0) and cell n=50, draw 0
   encoder 0 weights identical: True
   all 8 dev MSEs identical: True
   -> PASS
 
-Total time 67 s
+Total time 68 s

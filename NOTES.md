@@ -384,3 +384,12 @@ as the default, not for its score. Only this one number is computed on
 test; no other method, no baseline. The test/dev difference is explained by
 the data dictionary's note (test var(y) ~10% lower), not by a second look.
 Memo will also describe retraining and monitoring after deployment.
+
+### Test score — run once, 2026-11-03 (`analysis/outputs/test_score.txt`)
+
+Recommended pipeline (fine-tuned network, encoder 0, seed 0, all 2,000
+labels): **dev MSE 3.01 (RMSE 1.74 MPa), test MSE 2.87 (RMSE 1.69 MPa),
+test − dev −0.14.** Within the seed-to-seed spread on dev (SD 0.24, range
+2.67–3.31) — matches my pre-registered expectation. All other outputs
+unchanged by this run; checks PASS. Test is not to be used for anything
+else.

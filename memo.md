@@ -45,7 +45,13 @@ Anticipated objection: the table stops at 1,000 — answered by the flat
 
 ## 2. Can the unlabelled traces be made useful?
 
-TBD (my decision). Inputs settled in `part1_answers.md`: vs scratch,
+**Decided (mine): deploy the fine-tuned network** at 2,000 labels: dev
+3.1 ± 0.2 MSE (typical miss 1.7 MPa) against the incumbent's 46.9 (6.8
+MPa). Tied with scratch; chosen because it builds and keeps the encoder
+(frozen where labels are scarce, fine-tune where not, flag unusual panels).
+Traces: "yes, but not for accuracy at today's count" — value for the next
+family and for flagging. Retraining + monitoring sentence required.
+Inputs settled in `part1_answers.md`: vs scratch,
 pre-training buys nothing resolvable; vs the incumbent, frozen pre-trained
 wins clearly at every n (33.5 vs 60.7 at 50; 8.9 vs 47.5 at 1,000), ~80% of
 that from the architecture alone. Note the table ends at
@@ -60,9 +66,11 @@ engineer's 2,000 ($8.8M).
 
 ## Test-extract score
 
-TBD — the recommended pipeline scored once on `labeled_test.csv`, beside its
-dev number, with one sentence on the difference (test var(y) is ~10% lower).
-Not run yet: the recommendation is not fixed.
+Done (`analysis/outputs/test_score.txt`): fine-tuned network (encoder 0,
+seed 0, all 2,000 labels) — dev MSE 3.01 (RMSE 1.74 MPa), test MSE 2.87
+(RMSE 1.69 MPa). Difference −0.14, within the dev seed-to-seed spread (SD
+0.24). Sentence: slightly lower on test, consistent with test's ~10% lower
+variance in strength, and within what retraining alone moves the score.
 
 ## What the evidence does not establish
 

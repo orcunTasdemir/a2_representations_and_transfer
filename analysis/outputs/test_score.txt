@@ -1,0 +1,4 @@
+Recommended pipeline: fine-tuned network, encoder 0, seed 0, all 2000 labels
+  dev  MSE 3.01  RMSE 1.74 MPa
+  test MSE 2.87  RMSE 1.69 MPa
+  test - dev -0.14
