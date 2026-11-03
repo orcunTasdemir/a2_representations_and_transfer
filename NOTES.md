@@ -419,3 +419,11 @@ run.py if quoted): 100 → ±14%, 200 → ±10%, 250 → ±9%.
 Options: A 800 train + 200 check = 1,000 ($4.4M); B 1,000 + 200 = 1,200
 ($5.28M); C 1,000, inner split only ($4.4M). Agent's view: B, check set
 tested first and fixed, stages 100 → 250 → 500 → 1,000. Pending my choice.
+
+**Decided (mine): option B** — 1,000 training tests + 200 check panels on
+top = up to 1,200 tests (ceiling, not commitment), released in stages.
+Dollar stopping rule (benefit minus cost per tranche) and the noise upper
+bound adopted. Proposed stages (pending confirmation): check set first
+(200), then 100 → 250 → 500 → 1,000 training; frozen + ridge at the
+small stages, fine-tuned from ~250; 500 is a live checkpoint with no
+number from our table. Costs to come from `run.py`.
