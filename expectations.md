@@ -153,3 +153,14 @@ pre-trained is not the crossover question; it is either a genuine §3.3
 finding or a failed/mis-wired pre-training, checkable by comparing masked
 reconstruction error of pre-trained vs random encoders. Anything near 0 at
 any n is a bug until shown otherwise.
+
+---
+
+## Addendum — n = 2,000 (all training labels), written 2026-11-03 before it was run
+
+**Mine.** The incumbent might not improve at all: it is at or around the
+limit of its shape. Frozen pre-trained + ridge will get better but not
+surpass the other two. Scratch and fine-tuned will stay the same or get
+very slightly better; the ordering will not change. Scratch will win: the
+labelled data is already enough for this architecture to learn the problem,
+since its shape suits this problem.

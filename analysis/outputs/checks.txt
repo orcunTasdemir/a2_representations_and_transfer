@@ -13,7 +13,7 @@ Check 2 -- no panel appears in two files
 Pre-training 3 encoders on 20000 unlabelled traces
   encoder 0: 4.4 s
   encoder 1: 4.4 s
-  encoder 2: 4.4 s
+  encoder 2: 4.3 s
 
 Check 1 -- masked reconstruction on dev gauges (hidden gauges only; standardised units, so predicting 0 = the training mean)
   pre-trained encoder 0: 0.015
@@ -25,8 +25,8 @@ Check 1 -- masked reconstruction on dev gauges (hidden gauges only; standardised
 Exhibit 1 -- fitting
   n=50       0.7 s
   n=100      1.6 s
-  n=250      6.2 s
-  n=1000    13.9 s
+  n=250      6.1 s
+  n=1000    13.8 s
 
 | Method | n = 50 | n = 100 | n = 250 | n = 1000 | Runs/cell |
 |---|---:|---:|---:|---:|---:|
@@ -78,9 +78,38 @@ Q1 -- the incumbent
   ridge 250 -> 1000 improvement: 0.7
   ridge - scratch at 1000: 44.0 = 93% of ridge's error
 
+All 2000 labels, dev -- fitting (SD over inner seeds only)
+  n=2000    24.4 s
+
+| Method | n = 2000 | Runs/cell |
+|---|---:|---:|
+| Ridge on the 160 raw gauges (incumbent) | 46.9 ± 0.2 (6.8) | 5 |
+| Frozen pre-trained encoder + ridge | 8.5 ± 2.1 (2.9) | 15 |
+| Frozen random encoder + ridge (control) | 15.7 ± 0.0 (4.0) | 5 |
+| Network from scratch | 3.0 ± 0.1 (1.7) | 5 |
+| Fine-tuned encoder | 3.1 ± 0.2 (1.7) | 5 |
+| Reference: predict the mean of the n labels, no gauges | 188.9 ± 0.0 (13.7) | 5 |
+
+Comparisons at n = 2000 -- gap = mean(a) - mean(b); Rule A: |gap| > larger SD
+  frozen_pretrained - scratch
+    n=2000  gap    5.4  larger SD   2.1  Rule A yes
+  finetuned - scratch
+    n=2000  gap    0.0  larger SD   0.2  Rule A no
+  frozen_random - ridge_raw
+    n=2000  gap  -31.2  larger SD   0.2  Rule A yes
+  frozen_pretrained - frozen_random
+    n=2000  gap   -7.3  larger SD   2.1  Rule A yes
+  ridge_raw - scratch
+    n=2000  gap   43.9  larger SD   0.2  Rule A yes
+
+The incumbent from 1000 to 2000 labels
+  ridge 47.5 ± 0.4 -> 46.9 ± 0.2: change -0.6, larger SD 0.4
+  RMSE 6.89 -> 6.85 MPa; the extra 1000 tests cost $4,400,000
+  for reference: 750 tests from 250 -> 1000 cost $3,300,000
+
 Check 3 -- re-run pre-training (seed 0) and cell n=50, draw 0
   encoder 0 weights identical: True
   all 8 dev MSEs identical: True
   -> PASS
 
-Total time 41 s
+Total time 65 s

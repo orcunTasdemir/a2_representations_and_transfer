@@ -6,7 +6,7 @@ From the assignment folder (the one containing `data/` and `starter/`):
 
     python analysis/run.py
 
-About 45 seconds on a laptop CPU. Needs Python 3.10+ with numpy and pandas
+About 65 seconds on a laptop CPU. Needs Python 3.10+ with numpy and pandas
 only; versions used are pinned in `../requirements.txt`. It imports
 `starter/kestrel.py` unchanged and reads `data/` by relative path.
 
@@ -28,7 +28,11 @@ only; versions used are pinned in `../requirements.txt`. It imports
    for every pair compared, the split of the raw → pre-trained gain into
    architecture vs pre-training, and the incumbent's ratios to the mean
    baseline and to the network from scratch.
-6. **Check 3**: re-runs pre-training for seed 0 and the n=50, draw 0 cell,
+6. **All 2,000 training labels** (Kestrel's current count), every method
+   scored on dev, 5 inner seeds (SD covers inner randomness only — there is
+   one possible set of panels). Kept separate from Exhibit 1, with the same
+   Rule A comparisons and the incumbent's 1,000 → 2,000 change and cost.
+7. **Check 3**: re-runs pre-training for seed 0 and the n=50, draw 0 cell,
    and confirms the results are bit-identical.
 
 `labeled_test.csv` is not read by this script.
@@ -39,7 +43,9 @@ only; versions used are pinned in `../requirements.txt`. It imports
 |---|---|
 | `exhibit1_runs.csv` | One row per run: n, draw, method, encoder, dev MSE |
 | `exhibit1.csv` | One row per cell: mean, sample SD (ddof=1), runs |
-| `exhibit1.md` | Exhibit 1, formatted |
+| `exhibit1.md` | Exhibit 1, formatted; second version with RMSE (MPa) in brackets |
+| `all_labels_runs.csv`, `all_labels.csv`, `all_labels.md` | The n = 2,000 runs, cells and table |
+| `all_labels_comparisons.csv` | Rule A comparisons at n = 2,000 |
 | `part1_comparisons.csv` | Every Part 1 pair: means, SDs, gap, larger SD, Rule A |
 | `part1_split.csv` | Raw → pre-trained gain: architecture alone vs pre-training |
 | `checks.txt` | Full console log: the three checks and the Part 1 numbers |

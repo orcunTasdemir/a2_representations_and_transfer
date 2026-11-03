@@ -294,3 +294,23 @@ Implemented in `run.py` (not yet run at time of writing): `summarise`,
 `md_table` (RMSE in brackets = √ of the cell's mean MSE; SDs stay in MSE),
 `compare` generalised; outputs `all_labels*.csv/md`, RMSE version of
 Exhibit 1 inside `exhibit1.md`.
+
+### n = 2,000 run (dev) — `analysis/outputs/all_labels.md`, `checks.txt`
+
+Run 2026-11-03, 65 s total; Exhibit 1 runs byte-unchanged; checks PASS.
+Expectation written first (addendum in `expectations.md`).
+
+| Method | n = 2,000 (RMSE) |
+|---|---:|
+| Ridge raw | 46.9 ± 0.2 (6.8) |
+| Frozen pre-trained | 8.5 ± 2.1 (2.9) |
+| Frozen random | 15.7 ± 0.0 (4.0) |
+| Scratch | 3.0 ± 0.1 (1.7) |
+| Fine-tuned | 3.1 ± 0.2 (1.7) |
+| Mean of labels | 188.9 ± 0.0 (13.7) |
+
+Incumbent 1,000 → 2,000: 47.5 ± 0.4 → 46.9 ± 0.2, change −0.6 vs larger SD
+0.4 — passes Rule A, barely; RMSE 6.89 → 6.85 MPa; 1,000 extra tests =
+$4.4M. Caveat: the two SDs measure different things (draws at 1,000, inner
+seeds only at 2,000). At 2,000: scratch vs frozen clear (5.4 vs 2.1);
+fine-tuned vs scratch gap 0.0 (tie); ridge − scratch 43.9.
