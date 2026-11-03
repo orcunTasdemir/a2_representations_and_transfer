@@ -393,3 +393,17 @@ test − dev −0.14.** Within the seed-to-seed spread on dev (SD 0.24, range
 2.67–3.31) — matches my pre-registered expectation. All other outputs
 unchanged by this run; checks PASS. Test is not to be used for anything
 else.
+
+### Memo Q3 — in progress
+
+My first answer: budget 1,000; watch the shape of the error curve (or
+compare with the noise level) to judge whether 1,000 captured most of the
+accuracy; if not, go to 1,250 / 1,500 and repeat — i.e. staged.
+Agent's challenges (pending my answers): (1) justify 1,000 over 250 —
+250 → 1,000 halves fine-tuned error (7.2 → 3.6) for $3.3M; 1,000 → 2,000
+buys ~0.5 for $4.4M; depends on an accuracy spec the brief never states;
+(2) the noise level can only be bounded, and a flattening curve does not
+prove noise (the Q1 lesson); (3) a new family has no dev set — held-out
+evaluation panels must come out of the budget, or use the inner split;
+(4) frozen early, fine-tune from ~250; (5) transfer assumption → limitations.
+Costs/step gains to be added to `run.py` once framing is chosen.

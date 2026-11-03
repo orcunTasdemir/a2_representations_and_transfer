@@ -167,6 +167,17 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   was in panels the model gets wrong (e.g. fewer delaminated ones). Report
   the difference; do not explain it with a second look at test.
 
+- **Staged budget** (mine, S2): release tests in tranches, refit and check
+  the curve at each, stop when the gains stop paying.
+- **New family has no dev set** (S2): to see the curve, Kestrel must hold
+  back tested panels purely for evaluation — they cost $4,400 each too.
+  Reserve part of the budget, or rely on the noisy inner split. Mine.
+- **Flattening ≠ noise floor** (S2): in a staged check, compare the network
+  against something rather than reading flattening alone — the Q1 lesson.
+- **Spec is never stated in the brief** (S2): frame the budget conditional
+  on the accuracy needed ("1,000 if typical miss < ~2 MPa is needed; 250
+  if ~3 MPa will do").
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →
@@ -186,6 +197,8 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   "the architecture alone buys ~80%" rests on one random draw. (S1)
 - **n = 2,000 SDs cover inner seeds only** (one possible set of panels);
   they understate uncertainty relative to Exhibit 1's SDs. (S2)
+- **Transfer assumption** (S2): the budget curve was measured on this
+  family; a new family may differ in gauges, complexity and noise.
 - At n = 50, every inner decision (ridge penalty, stopping epoch) rests on
   13 panels — one reason the n = 50 SDs are large. (S1)
 - Test var(y) is ~10% lower than dev; expect and report a small difference,
