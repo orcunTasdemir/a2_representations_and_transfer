@@ -279,3 +279,18 @@ Same VS Code conversation as session 1 (thread continues in
 `0c849d9a….jsonl`), so the session-2 export will contain session 1 as its
 opening part — as in A1; to be stated in `sessions/README.md`.
 Start state: repo in sync with GitHub at 13db762; all Part 1 settled.
+
+### Decisions made (mine), 2026-11-03
+
+- Memo Q1 leads with both numbers: A (250 → 1,000 = 750 tests ≈ $3.3M
+  bought 0.7 MPa²) then B (same 1,000 panels: network 3.5 vs incumbent 47.5).
+- Both units in the memo: MSE (MPa²) and RMSE (MPa, typical miss), so the
+  reader sees where RMSE comes from and that the ordering is the same.
+- Add n = 2,000 (all training labels) on dev — the closest point to the
+  engineer's 4,000. Kept separate from Exhibit 1's four columns; SD there
+  covers inner seeds only (one possible set of panels).
+
+Implemented in `run.py` (not yet run at time of writing): `summarise`,
+`md_table` (RMSE in brackets = √ of the cell's mean MSE; SDs stay in MSE),
+`compare` generalised; outputs `all_labels*.csv/md`, RMSE version of
+Exhibit 1 inside `exhibit1.md`.

@@ -76,8 +76,12 @@ def masked_reconstruction_mse(enc, X, seed=12345):
 
 
 def run_cell(n, r, Xtr, ytr, Xdev, ydev, encoders, rand_enc):
-    """Every method on the same n panels of draw r. Returns a list of run records."""
-    idx = label_subset(n, r)
+    """Every method on the same n panels of draw r. Returns a list of run records.
+
+    At n = all of train there is only one possible set of panels, so r varies
+    only the inner seed (penalty split, network start, stopping split).
+    """
+    idx = np.arange(n) if n == len(Xtr) else label_subset(n, r)
     X, y = Xtr[idx], ytr[idx]
     rows = []
 
@@ -104,8 +108,34 @@ PAIRS = [("frozen_pretrained", "scratch"),       # Q2, Q4
          ("ridge_raw", "scratch")]               # Q1: same panels, flexible model
 
 
-def part1_numbers(cells):
-    """The derived numbers the Part 1 reading uses, so each comes from this run.
+def summarise(runs):
+    """One row per (method, n): mean and sample SD of dev MSE, run count, RMSE.
+
+    RMSE is the square root of the cell's mean MSE -- the same number in MPa,
+    the typical size of a miss. SDs stay in MSE units.
+    """
+    cells = (runs.groupby(["method", "n"])["dev_mse"]
+                 .agg(mean="mean", sd="std", runs="count").reset_index())
+    cells["sd"] = cells["sd"].fillna(0.0)
+    cells["rmse"] = np.sqrt(cells["mean"])
+    return cells
+
+
+def md_table(cells, counts, rmse=False):
+    """Exhibit-style table: mean ± SD per cell, optionally (RMSE) beside it."""
+    header = "| Method | " + " | ".join(f"n = {n}" for n in counts) + " | Runs/cell |"
+    lines = [header, "|---|" + "---:|" * (len(counts) + 1)]
+    for m in METHODS + ["mean_baseline"]:
+        c = cells[cells.method == m].set_index("n")
+        vals = " | ".join(f"{c.loc[n, 'mean']:.1f} ± {c.loc[n, 'sd']:.1f}"
+                          + (f" ({c.loc[n, 'rmse']:.1f})" if rmse else "")
+                          for n in counts)
+        lines.append(f"| {LABELS[m]} | {vals} | {int(c['runs'].iloc[0])} |")
+    return "\n".join(lines)
+
+
+def compare(cells, counts, fname, title):
+    """Gap and Rule A verdict for every pair in PAIRS at each label count.
 
     Rule A (the brief's wording): a gap is read only if it exceeds the larger
     of the two cells' SDs.
@@ -113,7 +143,7 @@ def part1_numbers(cells):
     m = cells.set_index(["method", "n"])
     rows = []
     for a, b in PAIRS:
-        for n in LABEL_COUNTS:
+        for n in counts:
             A, B = m.loc[(a, n)], m.loc[(b, n)]
             gap = A["mean"] - B["mean"]
             larger = max(A["sd"], B["sd"])
@@ -121,13 +151,19 @@ def part1_numbers(cells):
                          "mean_b": B["mean"], "sd_b": B["sd"], "gap": gap,
                          "larger_sd": larger, "rule_a": abs(gap) > larger})
     comp = pd.DataFrame(rows)
-    comp.to_csv(OUT / "part1_comparisons.csv", index=False)
-    log("\nPart 1 comparisons -- gap = mean(a) - mean(b); Rule A: |gap| > larger SD")
+    comp.to_csv(OUT / fname, index=False)
+    log(f"\n{title} -- gap = mean(a) - mean(b); Rule A: |gap| > larger SD")
     for (a, b), g in comp.groupby(["a", "b"], sort=False):
         log(f"  {a} - {b}")
         for _, r in g.iterrows():
             log(f"    n={r.n:<5} gap {r.gap:6.1f}  larger SD {r.larger_sd:5.1f}"
                 f"  Rule A {'yes' if r.rule_a else 'no'}")
+
+
+def part1_numbers(cells):
+    """The derived numbers the Part 1 reading uses, so each comes from this run."""
+    m = cells.set_index(["method", "n"])
+    compare(cells, LABEL_COUNTS, "part1_comparisons.csv", "Part 1 comparisons")
 
     # Q3: split the raw -> pre-trained gain into its two steps.
     split = []
@@ -196,24 +232,48 @@ def main():
     runs = pd.DataFrame(runs)
     runs.to_csv(OUT / "exhibit1_runs.csv", index=False)
 
-    cells = (runs.groupby(["method", "n"])["dev_mse"]
-                 .agg(mean="mean", sd="std", runs="count").reset_index())
+    cells = summarise(runs)
     cells.to_csv(OUT / "exhibit1.csv", index=False)
 
-    header = "| Method | " + " | ".join(f"n = {n}" for n in LABEL_COUNTS) + " | Runs/cell |"
-    lines = [header, "|---|" + "---:|" * (len(LABEL_COUNTS) + 1)]
-    for m in METHODS + ["mean_baseline"]:
-        c = cells[cells.method == m].set_index("n")
-        vals = " | ".join(f"{c.loc[n, 'mean']:.1f} ± {c.loc[n, 'sd']:.1f}"
-                          for n in LABEL_COUNTS)
-        lines.append(f"| {LABELS[m]} | {vals} | {int(c['runs'].iloc[0])} |")
-    table = "\n".join(lines)
+    table = md_table(cells, LABEL_COUNTS)
     (OUT / "exhibit1.md").write_text(
         "Exhibit 1. Dev MSE (MPa²), mean ± SD over runs. Lower is better.\n\n"
-        + table + "\n")
+        + table + "\n\n"
+        "With RMSE in MPa (square root of the mean MSE: the typical miss) in brackets:\n\n"
+        + md_table(cells, LABEL_COUNTS, rmse=True) + "\n")
     log("\n" + table)
 
     part1_numbers(cells)
+
+    # ---- every label Kestrel holds, scored on dev -------------------------
+    # Not part of Exhibit 1's protocol: one possible set of panels, so the SD
+    # here reflects only the inner seeds, not which panels were tested.
+    n_all = len(Xtr)
+    log(f"\nAll {n_all} labels, dev -- fitting (SD over inner seeds only)")
+    t = time.time()
+    runs_all = pd.DataFrame([row for r in range(N_REPLICATES)
+                             for row in run_cell(n_all, r, Xtr, ytr, Xdev, ydev,
+                                                 encoders, rand_enc)])
+    log(f"  n={n_all:<5} {time.time() - t:6.1f} s")
+    runs_all.to_csv(OUT / "all_labels_runs.csv", index=False)
+    cells_all = summarise(runs_all)
+    cells_all.to_csv(OUT / "all_labels.csv", index=False)
+    table_all = md_table(cells_all, [n_all], rmse=True)
+    (OUT / "all_labels.md").write_text(
+        f"All {n_all} training labels, dev MSE (MPa²), mean ± SD over 5 inner seeds"
+        " (RMSE in MPa in brackets). The SD does not include label-draw variation.\n\n"
+        + table_all + "\n")
+    log("\n" + table_all)
+    both = pd.concat([cells, cells_all])
+    compare(both, [n_all], "all_labels_comparisons.csv", f"Comparisons at n = {n_all}")
+    m = both.set_index(["method", "n"])
+    log(f"\nThe incumbent from 1000 to {n_all} labels")
+    r1, r2 = m.loc[("ridge_raw", 1000)], m.loc[("ridge_raw", n_all)]
+    log(f"  ridge {r1['mean']:.1f} ± {r1['sd']:.1f} -> {r2['mean']:.1f} ± {r2['sd']:.1f}:"
+        f" change {r2['mean'] - r1['mean']:+.1f}, larger SD {max(r1['sd'], r2['sd']):.1f}")
+    log(f"  RMSE {r1['rmse']:.2f} -> {r2['rmse']:.2f} MPa;"
+        f" the extra {n_all - 1000} tests cost ${(n_all - 1000) * 4400:,}")
+    log(f"  for reference: 750 tests from 250 -> 1000 cost ${750 * 4400:,}")
 
     # ---- check 3: same numbers on a re-run --------------------------------
     log("\nCheck 3 -- re-run pre-training (seed 0) and cell n=50, draw 0")
