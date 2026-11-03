@@ -185,6 +185,10 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
 - **Noise guess** (S2): at most ~3 MPa² (typical miss ≤ ~1.7 MPa), from
   best dev 3.0 / test 2.87 — an upper bound, not a measurement.
 
+- **Wording around "test"** (mine, S2): "destructive test" for crushing a
+  panel; "check set" / "hold-out set" for the 200 evaluation panels; our
+  `labeled_test.csv` only as "the held-out extract scored once".
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →

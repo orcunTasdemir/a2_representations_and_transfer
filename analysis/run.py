@@ -197,6 +197,53 @@ def part1_numbers(cells):
         f" of ridge's error")
 
 
+# ---- memo question 3: the staged budget for the next panel family ----------
+COST_PER_PANEL = 4400       # $ per destructively tested panel (brief)
+ENGINEER_PLAN = 2000        # tests the engineer proposes
+CHECK_PANELS = 200          # held-out check set, tested first (my decision)
+STAGES = (100, 250, 500, 1000)  # cumulative training panels (my decision)
+
+
+def budget_numbers(cells):
+    """Costs of the staged plan, and the error this study measured at each stage.
+
+    The 500 stage is a live checkpoint for Kestrel: this study has no number
+    for it, so none is printed.
+    """
+    m = cells.set_index(["method", "n"])
+    log(f"\nMemo Q3 -- staged budget: {CHECK_PANELS} check panels first, then"
+        f" training panels in stages; ${COST_PER_PANEL:,} per tested panel")
+    rows, prev = [], 0
+    for k in STAGES:
+        total = CHECK_PANELS + k
+        row = {"training_panels": k, "check_panels": CHECK_PANELS,
+               "total_tested": total, "cumulative_cost": total * COST_PER_PANEL,
+               "this_tranche_cost": (k - prev) * COST_PER_PANEL}
+        for meth in ("frozen_pretrained", "finetuned"):
+            if (meth, k) in m.index:
+                row[f"{meth}_mse"] = m.loc[(meth, k), "mean"]
+                row[f"{meth}_rmse"] = m.loc[(meth, k), "rmse"]
+        rows.append(row)
+        seen = "  ".join(f"{meth} {m.loc[(meth, k), 'mean']:.1f} ({m.loc[(meth, k), 'rmse']:.1f} MPa)"
+                         for meth in ("frozen_pretrained", "finetuned") if (meth, k) in m.index)
+        log(f"  train {k:>5}  tested {total:>5}  tranche ${row['this_tranche_cost']:>9,}"
+            f"  cumulative ${row['cumulative_cost']:>10,}  "
+            + (f"dev: {seen}" if seen else "no measured point in this study"))
+        prev = k
+    pd.DataFrame(rows).to_csv(OUT / "budget_stages.csv", index=False)
+    ceiling = (CHECK_PANELS + STAGES[-1]) * COST_PER_PANEL
+    engineer = ENGINEER_PLAN * COST_PER_PANEL
+    log(f"  stage 0 (check set only): ${CHECK_PANELS * COST_PER_PANEL:,}")
+    log(f"  ceiling ${ceiling:,} vs engineer's {ENGINEER_PLAN} tests ${engineer:,}:"
+        f" ${engineer - ceiling:,} less ({1 - ceiling / engineer:.0%})")
+    log(f"  each further 250 training panels: ${250 * COST_PER_PANEL:,}")
+    log(f"  check set of {CHECK_PANELS}: MSE measured to about"
+        f" +-{np.sqrt(2 / CHECK_PANELS):.0%} (1 SE, normal errors; heavier tails -> wider)")
+    best = min(m.loc[(k, n_), "mean"] for k in METHODS for n_ in (1000, 2000) if (k, n_) in m.index)
+    log(f"  noise floor: at most {best:.1f} MPa^2 (typical miss {np.sqrt(best):.1f} MPa),"
+        f" the best dev cell -- an upper bound, not a measurement")
+
+
 def main():
     t0 = time.time()
     Xtr, ytr = load("train")
@@ -278,6 +325,8 @@ def main():
     log(f"  RMSE {r1['rmse']:.2f} -> {r2['rmse']:.2f} MPa;"
         f" the extra {n_all - 1000} tests cost ${(n_all - 1000) * 4400:,}")
     log(f"  for reference: 750 tests from 250 -> 1000 cost ${750 * 4400:,}")
+
+    budget_numbers(pd.concat([cells, cells_all]))
 
     # ---- the recommended pipeline, scored ONCE on test ---------------------
     # Fixed in NOTES.md before test was read: encoder 0, network seed 0, all

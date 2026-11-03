@@ -32,7 +32,12 @@ only; versions used are pinned in `../requirements.txt`. It imports
    scored on dev, 5 inner seeds (SD covers inner randomness only — there is
    one possible set of panels). Kept separate from Exhibit 1, with the same
    Rule A comparisons and the incumbent's 1,000 → 2,000 change and cost.
-7. **Check 3**: re-runs pre-training for seed 0 and the n=50, draw 0 cell,
+7. Memo Q3 budget numbers: the staged plan (200 check panels, then 100 →
+   250 → 500 → 1,000 training panels) with costs at $4,400 per panel, the
+   dev error this study measured at each stage, the saving against the
+   engineer's 2,000, the check set's precision, and the noise upper bound.
+8. The single test score (see below).
+9. **Check 3**: re-runs pre-training for seed 0 and the n=50, draw 0 cell,
    and confirms the results are bit-identical.
 
 `labeled_test.csv` is read once, at the end, to score the single
@@ -51,5 +56,6 @@ read; no other model is scored on test and nothing is chosen from it.
 | `all_labels_comparisons.csv` | Rule A comparisons at n = 2,000 |
 | `part1_comparisons.csv` | Every Part 1 pair: means, SDs, gap, larger SD, Rule A |
 | `part1_split.csv` | Raw → pre-trained gain: architecture alone vs pre-training |
+| `budget_stages.csv` | Memo Q3: staged plan — panels, tranche and cumulative cost, measured dev error per stage |
 | `test_score.txt` | The recommended pipeline's dev and test MSE / RMSE |
 | `checks.txt` | Full console log: the three checks and the Part 1 numbers |

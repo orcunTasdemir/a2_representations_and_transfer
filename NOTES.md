@@ -427,3 +427,18 @@ bound adopted. Proposed stages (pending confirmation): check set first
 (200), then 100 → 250 → 500 → 1,000 training; frozen + ridge at the
 small stages, fine-tuned from ~250; 500 is a live checkpoint with no
 number from our table. Costs to come from `run.py`.
+
+**Decided (mine):** stage sizes 100 → 250 → 500 → 1,000 training panels after
+a 200-panel check set; total ceiling 1,200. Careful wording around "test"
+(destructive test / check set / our test file).
+
+Budget numbers now in `run.py` (`budget_numbers`, `budget_stages.csv`,
+`checks.txt`): check set $880,000; cumulative $1.32M / $1.98M / $3.08M /
+$5.28M; tranches $440K / $660K / $1.1M / $2.2M; ceiling $5.28M vs $8.8M =
+$3.52M (40%) less; each further 250 = $1.1M; check set of 200 measures MSE
+to ±10% (1 SE, normal errors); noise ≤ 3.0 MPa² (1.7 MPa). Exhibit 1,
+n=2,000 and test outputs unchanged by this run; checks PASS.
+
+**All memo decisions made.** Next: memo prose (merge Part 1 into the memo
+sections), process note to 1 page, optional extension (not yet discussed),
+final clean-copy reproducibility check, sessions export, zip.

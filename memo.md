@@ -59,10 +59,20 @@ that from the architecture alone. Note the table ends at
 
 ## 3. How many tests should the next panel family budget?
 
-TBD (my decision). Input: means cross between 100 and 250; scratch ahead
-from 250; pre-training's advantage gone within the low hundreds. Must give a number, what
-happens on either side of it, and the cost at $4,400 per panel against the
-engineer's 2,000 ($8.8M).
+**Decided (mine):** budget **up to 1,200 tested panels ($5.28M)** — 1,000
+for training plus a 200-panel check set — against the engineer's 2,000
+($8.8M): $3.52M (40%) less. A ceiling, released in stages: check set first
+($0.88M), then training panels to 100 → 250 → 500 → 1,000; refit and score on
+the check set at each; continue only if the next tranche is expected to
+save more than it costs. Frozen + ridge at the small stages, fine-tuned
+from ~250. Either side (dev, this family): 250 training → fine-tuned 7.2
+(2.7 MPa); 1,000 → 3.6 (1.9 MPa), the 250 → 1,000 step halves the error for
+$2.2M+$1.1M of training panels; 2,000 → 3.1 (1.7 MPa) for $4.4M more.
+Noise ≤ 3.0 MPa² (≤ 1.7 MPa typical miss), an upper bound. Spec never
+stated → condition the number on it. 500 has no measured point.
+Wording: "test" is ambiguous — say "destructive test" / "check set" /
+never mix with our test file. All numbers in `checks.txt`,
+`budget_stages.csv`.
 
 ## Test-extract score
 

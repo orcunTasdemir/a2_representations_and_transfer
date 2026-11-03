@@ -12,7 +12,7 @@ Check 2 -- no panel appears in two files
 
 Pre-training 3 encoders on 20000 unlabelled traces
   encoder 0: 4.4 s
-  encoder 1: 4.4 s
+  encoder 1: 4.5 s
   encoder 2: 4.4 s
 
 Check 1 -- masked reconstruction on dev gauges (hidden gauges only; standardised units, so predicting 0 = the training mean)
@@ -26,7 +26,7 @@ Exhibit 1 -- fitting
   n=50       0.7 s
   n=100      1.6 s
   n=250      6.1 s
-  n=1000    13.7 s
+  n=1000    13.8 s
 
 | Method | n = 50 | n = 100 | n = 250 | n = 1000 | Runs/cell |
 |---|---:|---:|---:|---:|---:|
@@ -84,7 +84,7 @@ Q1 -- the incumbent
   ridge - scratch at 1000: 44.0 = 93% of ridge's error
 
 All 2000 labels, dev -- fitting (SD over inner seeds only)
-  n=2000    24.2 s
+  n=2000    24.1 s
 
 | Method | n = 2000 | Runs/cell |
 |---|---:|---:|
@@ -113,6 +113,17 @@ The incumbent from 1000 to 2000 labels
   ridge 47.5 ± 0.4 -> 46.9 ± 0.2: change -0.6, larger SD 0.4
   RMSE 6.89 -> 6.85 MPa; the extra 1000 tests cost $4,400,000
   for reference: 750 tests from 250 -> 1000 cost $3,300,000
+
+Memo Q3 -- staged budget: 200 check panels first, then training panels in stages; $4,400 per tested panel
+  train   100  tested   300  tranche $  440,000  cumulative $ 1,320,000  dev: frozen_pretrained 17.6 (4.2 MPa)  finetuned 21.3 (4.6 MPa)
+  train   250  tested   450  tranche $  660,000  cumulative $ 1,980,000  dev: frozen_pretrained 10.8 (3.3 MPa)  finetuned 7.2 (2.7 MPa)
+  train   500  tested   700  tranche $1,100,000  cumulative $ 3,080,000  no measured point in this study
+  train  1000  tested  1200  tranche $2,200,000  cumulative $ 5,280,000  dev: frozen_pretrained 8.9 (3.0 MPa)  finetuned 3.6 (1.9 MPa)
+  stage 0 (check set only): $880,000
+  ceiling $5,280,000 vs engineer's 2000 tests $8,800,000: $3,520,000 less (40%)
+  each further 250 training panels: $1,100,000
+  check set of 200: MSE measured to about +-10% (1 SE, normal errors; heavier tails -> wider)
+  noise floor: at most 3.0 MPa^2 (typical miss 1.7 MPa), the best dev cell -- an upper bound, not a measurement
 
 Recommended pipeline: fine-tuned network, encoder 0, seed 0, all 2000 labels
   dev  MSE 3.01  RMSE 1.74 MPa
