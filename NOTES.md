@@ -326,3 +326,10 @@ miss 6.89 → 6.85 MPa), a change this design cannot distinguish from noise
 and too small to matter even if real."
 Rule A note: defined for Exhibit 1 cells (SDs include draws); at n = 2,000
 the SDs are narrower, so it is applied with judgment there.
+
+Memo Q2 in progress: I agree the traces can be made useful but there is no
+accuracy reason to use them at 2,000 (scratch ties fine-tuned). Corrected
+by the agent: "better" → "tied; simplicity". Arguments against weighed —
+robustness, flagging unusual panels, reuse for other targets (mine) — all
+logged in `ideas.md` as untested suggestions. Deploy choice (scratch vs
+fine-tuned) pending.

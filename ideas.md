@@ -128,6 +128,24 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
 - **Scratch vs fine-tuned at 2,000: dead tie** (gap 0.0, SD 0.2). Neither
   "wins"; matters for naming the deployed pipeline. (S2)
 
+- **Memo Q2 — "can the traces be useful": yes, but not for this model at
+  today's count** (scratch ties fine-tuned at 2,000, so no accuracy gain;
+  the reason to skip them now is simplicity, not accuracy). Points I liked,
+  all untested here so framed as suggestions (S2):
+  - **Robustness:** 20,000 traces likely span more operating conditions
+    than the 2,000 tested; an encoder that has seen them *might* hold up
+    better under shifts. Dev is same autoclave/period, so untestable here.
+  - **Flagging unlike-historical panels** via reconstruction error — fits
+    Quality's goal of testing only the panels the model is unsure about.
+    Needs the full pre-trained network (with its decoder) kept alongside
+    whichever predictor is deployed; the fine-tuned model drops the decoder,
+    so flagging does not favour fine-tuning over scratch.
+  - **Reuse for other targets** (mine): a learned representation could feed
+    models for other quality outcomes later.
+  - **Next panel family:** traces accumulate from day one while labels are
+    scarce — where pre-training is meant to pay (memo Q3).
+  - Cost of using them is small (~5 s pre-training per encoder).
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →
