@@ -506,3 +506,15 @@ confirmation to redraft memo §3.
 feedback-loop discussion goes in the memo (formatting may flex). Proposed
 edits: §3 stopping rule C + phases + random training draws; §2 concrete
 retraining line; random audit stream line. Pending go to redraft.
+
+**Memo redrafted (session 4):** §2 now has the operating loop — predict
+every panel, destructively test only those near the limit, retrain
+periodically with the same recipe, champion vs challenger on a random check
+set, small random audit sample every period against the feedback loop. §3:
+build-phase tests are one-off and drawn at random; statistical stop (last
+batch's improvement below the check set's ~10% precision) plus the
+operational dollar test (count check panels the model would send for
+testing; bound next gain by last; yearly reduction × $4,400 × years vs
+batch cost; Kestrel supplies spec limit and volume).
+Rendering now: `EXTRA_CSS='html{line-height:1.27} @page{margin:0.65in 0.7in}' bash drafts/render_pdf.sh memo.md memo.pdf 10pt`
+→ 2 pp prose (~¼ page spare) + Exhibit 1. check_memo_numbers: 102 found.

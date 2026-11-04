@@ -20,8 +20,8 @@ settled Part 1 reading), `ideas.md` (points not yet used) and the working
 deliverables `memo.md` / `memo.pdf` and `ai_process_note.md` / `.pdf`
 (working material in `drafts/`). `expectations.md` holds what I expected
 before the table was run. PDFs: `bash drafts/render_pdf.sh memo.md
-memo.pdf` (memo at 10.5pt; process note at 10pt with tighter spacing — see
-NOTES). Numbers: `python analysis/check_memo_numbers.py`.
+memo.pdf` (memo and process note both at 10pt with tighter spacing — exact
+commands in NOTES). Numbers: `python analysis/check_memo_numbers.py`.
 
 ## Hard rules
 

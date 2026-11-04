@@ -189,7 +189,7 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   panel; "check set" / "hold-out set" for the 200 evaluation panels; our
   `labeled_test.csv` only as "the held-out extract scored once".
 
-- **Two phases** (S4, from my question): building (destructive tests for
+- **[used → memo.md §2/§3]** **Two phases** (S4, from my question): building (destructive tests for
   labels — check set + training batches, drawn at random; one-off cost) vs
   operating (model predicts every panel; only predictions within the
   "unsure" band around the spec limit are destructively tested; savings
@@ -202,7 +202,7 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   substitute for the random check set. Training panels should be random:
   our curve assumes random draws.
 
-- **Retraining, concretely** (S4, from my question): periodic full retrain
+- **[used → memo.md §2/§3]** **Retraining, concretely** (S4, from my question): periodic full retrain
   of the same recipe (pre-trained encoder → fine-tune a fresh network on
   all labels to date), not per-panel updates (noise; near-limit panels would
   skew it) and not warm-start. Champion vs challenger on the random check
@@ -211,7 +211,7 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   and keep the new version only if it scores at least as well on the check
   set."
 
-- **Feedback loop / selection bias in retraining** (S4, my question): QC
+- **[used → memo.md §2/§3]** **Feedback loop / selection bias in retraining** (S4, my question): QC
   tests near-limit panels (not "expected faulty"). Selection is on gauges
   (X), not strength (y), so the gauge→strength relationship is not biased,
   but data thins away from the limit → blind spots nobody sees, a
