@@ -484,3 +484,10 @@ first "continued"); session 2 = Part 1 Q2–Q4 (to Nov 2, 12:21 AM; NOTES
 NOTES "Session 2" (memo work). The Nov 1 snapshot was restored from commit
 16ff5ec. Prefix chain verified. Process note now says three working
 sessions; the extension work will be session 4.
+
+---
+
+## Session 4 — 2026-11-03 (macOS laptop). Optional extension.
+
+Same conversation as sessions 1–3; export will be `a2-session-4`.
+Start state: repo in sync; memo.pdf (2 pp + Exhibit) and process note done.
