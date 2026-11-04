@@ -144,3 +144,10 @@ Found: the paired per-draw comparison (above).
   the best of the five; my expectation (difference within the dev seed
   spread) was recorded first. Result 2.87 vs 3.01, within the spread.
   Nothing else was scored on test.
+
+- (Session 4) I questioned the memo's stopping rule "continue only if the
+  next batch is expected to save more than it costs": not actionable, since
+  the saving is unknown in advance. Agent agreed; options A (operational
+  dollar rule: bound next gain by last per-panel gain; convert to tests
+  avoided via spec band, volume, $4,400), B (statistical: stop when the last
+  batch's improvement is below the check set's ~10% precision), C (both).

@@ -491,3 +491,8 @@ sessions; the extension work will be session 4.
 
 Same conversation as sessions 1–3; export will be `a2-session-4`.
 Start state: repo in sync; memo.pdf (2 pp + Exhibit) and process note done.
+
+Memo §3 stopping rule challenged (mine): not actionable as written. Options
+A / B / C laid out (see `drafts/ai_process_note_material.md`); agent leans
+B or compact C. Pending my choice. Per-panel gains, if quoted, go into
+`run.py` first. Spec limit and annual volume are not in the brief.
