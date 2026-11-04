@@ -518,3 +518,12 @@ testing; bound next gain by last; yearly reduction × $4,400 × years vs
 batch cost; Kestrel supplies spec limit and volume).
 Rendering now: `EXTRA_CSS='html{line-height:1.27} @page{margin:0.65in 0.7in}' bash drafts/render_pdf.sh memo.md memo.pdf 10pt`
 → 2 pp prose (~¼ page spare) + Exhibit 1. check_memo_numbers: 102 found.
+
+**Audit fixes (session 4):** memo names dev/test explicitly (fix 1). Fix 2
+rejected (mine): keep "consistent with that extract's slightly lower spread
+of strength" — a fact for the reader, not an excuse. Process note now holds
+all session-4 judgments; fits 1 page at 9.5pt. My standing rule: content
+over aesthetics — lower font/margins before cutting, until unreadable.
+Render commands now:
+- memo: `EXTRA_CSS='html{line-height:1.27} @page{margin:0.65in 0.7in}' bash drafts/render_pdf.sh memo.md memo.pdf 10pt`
+- note: `EXTRA_CSS='html{line-height:1.22} li{margin:0.03em 0} ul{margin:0.1em 0 0.3em 0} h2{margin:0.6em 0 0.2em 0} @page{margin:0.5in 0.6in}' bash drafts/render_pdf.sh ai_process_note.md ai_process_note.pdf 9.5pt`

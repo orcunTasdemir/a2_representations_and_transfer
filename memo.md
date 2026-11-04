@@ -11,7 +11,7 @@ title: "Memo"
 
 **Recommendation.** Do not fund the 2,000 additional tests. They would not fix the current model: its error has stopped falling, because a straight-line model cannot represent how strength arises. Replace it now with a small neural network trained on the 2,000 panels already tested and built on the 20,000 untested gauge traces: on 1,000 tested panels held out from all fitting, its typical error is **1.7 MPa against the current model's 6.8 MPa**. For the next panel family, budget **up to 1,200 destructive tests ($5.28M)** — 1,000 to train on and 200 kept aside to check accuracy — released in stages and stopped as soon as a further batch costs more than it saves. That ceiling is $3.52M (40%) below the proposal, before any early stop.
 
-**How this was measured.** Every method was fitted on 50, 100, 250 and 1,000 tested panels, each time on five different random selections of panels, and scored on 1,000 further tested panels it never saw (Exhibit 1). Error is the mean squared error (MSE, in MPa²); its square root, the typical miss in MPa, is shown in brackets. A difference smaller than the run-to-run standard deviation (SD) is not read as a difference. Predicting the average strength for every panel scores 188.9 (13.7 MPa).
+**How this was measured.** Every method was fitted on 50, 100, 250 and 1,000 tested panels, each time on five different random selections of panels, and scored on 1,000 further tested panels it never saw (the dev extract; Exhibit 1). Error is the mean squared error (MSE, in MPa²); its square root, the typical miss in MPa, is shown in brackets. A difference smaller than the run-to-run standard deviation (SD) is not read as a difference. Predicting the average strength for every panel scores 188.9 (13.7 MPa).
 
 ### 1. Will more destructive tests fix the current model? No.
 
@@ -37,7 +37,7 @@ These are one-off tests to build the model, not the routine tests in operation. 
 
 Either side of 1,000, on this family: at 250 training panels the network's error is 7.2 (2.7 MPa) for $1.98M in all; reaching 1,000 halves it to 3.6 (1.9 MPa); going on to 2,000 bought only 3.1 (1.7 MPa) for $4.4M more. So **1,000 is the number if the specification needs a typical miss near 2 MPa; stop at 250 if about 3 MPa will do.** No budget gets below the noise, at most 3.0 (1.7 MPa) on this family. Against the proposed 2,000 tests ($8.8M), the full ceiling saves $3.52M.
 
-**Held-out check.** The recommended pipeline was fixed before the final extract was opened and scored on it once: **2.87 (1.69 MPa) against 3.01 (1.74 MPa) on the comparison extract**. The difference, −0.14, is smaller than the 0.24 SD the same network shows across retraining runs, and consistent with that extract's slightly lower spread of strength.
+**Held-out check.** The recommended pipeline was fixed before the separate test extract was opened, and scored on it once: **2.87 (1.69 MPa) on test against 3.01 (1.74 MPa) on dev**. The difference, −0.14, is smaller than the 0.24 SD the same network shows across retraining runs, and consistent with that extract's slightly lower spread of strength.
 
 ### What this evidence does not establish
 

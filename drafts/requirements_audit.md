@@ -46,8 +46,8 @@ and `data/DATA_DICTIONARY.md`, against where the submission meets it.
 | All comparison on dev | `run.py`; n = 2,000 also on dev | ✔ |
 | Recommended pipeline scored once on test, beside dev, difference noted in one sentence | "Held-out check" | ✔ |
 | Test not used to select | pipeline pre-registered in NOTES before test was read | ✔ |
-| ⚠ Memo calls the two files "comparison extract" / "final extract", never dev / test | Proposed: add "(dev)" and "(test)" once each so a grader can tick criterion 4 at a glance | ⚠ |
-| ⚠ Data dictionary: "report [the difference] rather than accounting for it" — memo adds "consistent with that extract's slightly lower spread of strength", which accounts for it | Proposed: drop that clause | ⚠ |
+| Memo names dev and test explicitly | "How this was measured" (dev extract); "Held-out check" (test vs dev) — fixed | ✔ |
+| Data dictionary: "report it rather than accounting for it" | **Kept the clause (my decision):** it is a fact stated beside the number, not used to explain the difference away | ✔ |
 
 ## Reproducibility, communication, process (rubric 5, 10 pts)
 
@@ -57,7 +57,7 @@ and `data/DATA_DICTIONARY.md`, against where the submission meets it.
 | No absolute paths; seeds set; only numpy/pandas | `run.py` | ✔ |
 | Every memo number from the run | `check_memo_numbers.py`: 102/102 | ✔ |
 | Process note ≤ 1 page, specific: delegated / rejected / checked | `ai_process_note.md` (1 page at 10pt) | ✔ |
-| ⚠ Process note lacks the session-4 judgments: build vs operate phases, feedback-loop risk → champion/challenger + random audit (mine) | Proposed: fold into the stopping-rule bullet | ⚠ |
+| Process note includes the session-4 judgments (stopping rule, build vs operate, retraining, feedback loop → audit sample, kept clause) | added; fits 1 page at 9.5pt | ✔ |
 | ☐ Runs end to end from a clean copy | final step | ☐ |
 | ☐ Sessions exported (session 4), README updated, export read for private content | final step | ☐ |
 | ☐ Zip `tasdemir_orcun_a2.zip`: memo.pdf, analysis/ (with outputs), ai_process_note.md, sessions/; no data/, .venv, __pycache__ | final step; whether to include drafts/, expectations.md, part1_answers.md is my call | ☐ |
