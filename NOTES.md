@@ -527,3 +527,32 @@ over aesthetics — lower font/margins before cutting, until unreadable.
 Render commands now:
 - memo: `EXTRA_CSS='html{line-height:1.27} @page{margin:0.65in 0.7in}' bash drafts/render_pdf.sh memo.md memo.pdf 10pt`
 - note: `EXTRA_CSS='html{line-height:1.22} li{margin:0.03em 0} ul{margin:0.1em 0 0.3em 0} h2{margin:0.6em 0 0.2em 0} @page{margin:0.5in 0.6in}' bash drafts/render_pdf.sh ai_process_note.md ai_process_note.pdf 9.5pt`
+
+## Session 4 close — 2026-11-03
+
+Done this session: stopping rule made actionable with the dollar link
+(statistical stop + pricing step); build vs operate phases; retraining =
+periodic full retrain with champion/challenger on a random check set;
+random audit sample against the feedback loop (my point); requirements
+audit (`drafts/requirements_audit.md`) — dev/test named in memo, test-
+difference clause kept (my decision), process note updated (1 page at
+9.5pt). Memo 2 pp + Exhibit at 10pt; 102/102 numbers found.
+
+**Decided (mine): optional extension = option 2** — pre-train on the first
+2,000 traces instead of all 20,000; report the difference and what it
+implies for a plant that has just installed the instrumentation (ties to
+the next-family budget). To do tomorrow (session 5).
+
+### Open — next session starts here
+
+1. Extension option 2: write expectation first; add to `run.py` (3 encoders
+   on the first 2,000 traces, once, outside the loop; frozen and fine-tuned
+   rows at the four label counts on dev; Rule A vs the 20,000-trace rows);
+   implication for the recommendation; fit into memo (~¼ page spare on
+   p.2 at 10pt) and a line in the process note; rerun checker.
+2. Process note session count → five after session 5; sessions README row.
+3. Final: clean-copy run from a fresh clone, `check_memo_numbers.py`,
+   export sessions (read for private content), zip
+   `tasdemir_orcun_a2.zip` — decide on drafts/, expectations.md,
+   part1_answers.md.
+4. Deadline Thursday 2026-11-05, 6:00 PM Central.

@@ -18,12 +18,13 @@ session" (export, notes, commit). Times are US Central.
 | `a2-session-1` | Oct 20 → Nov 1 (ends 10:09 PM) | Setup; protocol and pre-training concepts; eight expectations written; `analysis/run.py` and Exhibit 1; Part 1 Q1. |
 | `a2-session-2` | Nov 1 → Nov 2 (ends 12:21 AM) | Part 1 Q2–Q4 read and settled (`part1_answers.md`); Part 1 numbers moved into `run.py`. |
 | `a2-session-3` | Nov 2 → Nov 3 | Memo decisions (n = 2,000 run, deployment choice, test pipeline fixed then scored once, staged budget); memo and process note written; sessions relabelled. |
+| `a2-session-4` | Nov 3 | Stopping rule made actionable (statistical stop + dollar test); build vs operate phases; retraining with champion/challenger and a random audit sample against the feedback loop; requirements audit and fixes; extension option chosen. |
 
 Sessions 1–3 are one VS Code conversation (`0c849d9a…`) worked in three
 times, so each file is the whole conversation as it stood at that session's
 close: `a2-session-2.jsonl` contains `a2-session-1.jsonl` as its opening
-part, and `a2-session-3.jsonl` contains `a2-session-2.jsonl`. Verified in
-Python as byte-exact prefixes (516 ⊂ 806 ⊂ 1,554+ records). All three are
+part, `a2-session-3.jsonl` contains `a2-session-2.jsonl`, and `a2-session-4.jsonl` contains `a2-session-3.jsonl`. Verified in
+Python as byte-exact prefixes (516 ⊂ 806 ⊂ 1,554 ⊂ 1,787 records). All three are
 submitted unedited rather than only the last, because each is what existed
 at the end of its session.
 

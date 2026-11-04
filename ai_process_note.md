@@ -1,6 +1,6 @@
 # AI process note — Assignment 2
 
-Agent: Claude Code (VS Code extension), one conversation across three working sessions, plus one failed start (see `sessions/`).
+Agent: Claude Code (VS Code extension), one conversation across four working sessions, plus one failed start (see `sessions/`).
 
 ## What I delegated
 
