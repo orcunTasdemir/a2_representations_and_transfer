@@ -211,6 +211,17 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   and keep the new version only if it scores at least as well on the check
   set."
 
+- **Feedback loop / selection bias in retraining** (S4, my question): QC
+  tests near-limit panels (not "expected faulty"). Selection is on gauges
+  (X), not strength (y), so the gauge→strength relationship is not biased,
+  but data thins away from the limit → blind spots nobody sees, a
+  self-reinforcing loop, and a skewed early-stopping split. Mitigation: a
+  small random audit sample of production every period; champion vs
+  challenger on the random check set. Candidate line: "Keep destructively
+  testing a small random sample of production every period, so the training
+  data and the check set keep representing every panel, not only those near
+  the limit."
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →

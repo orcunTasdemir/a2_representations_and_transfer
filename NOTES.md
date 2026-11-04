@@ -501,3 +501,8 @@ B or compact C. Pending my choice. Per-panel gains, if quoted, go into
 be adjusted to fit. Clarified build vs operate phases (my question) —
 proposed C: statistical default stop + operational dollar test. Pending my
 confirmation to redraft memo §3.
+
+**Decided (mine):** everything from the build/operate, retraining and
+feedback-loop discussion goes in the memo (formatting may flex). Proposed
+edits: §3 stopping rule C + phases + random training draws; §2 concrete
+retraining line; random audit stream line. Pending go to redraft.
