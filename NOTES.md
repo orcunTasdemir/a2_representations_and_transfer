@@ -496,3 +496,8 @@ Memo §3 stopping rule challenged (mine): not actionable as written. Options
 A / B / C laid out (see `drafts/ai_process_note_material.md`); agent leans
 B or compact C. Pending my choice. Per-panel gains, if quoted, go into
 `run.py` first. Spec limit and annual volume are not in the brief.
+
+**Decided (mine): keep the dollar link** (option A or C); margins/font may
+be adjusted to fit. Clarified build vs operate phases (my question) —
+proposed C: statistical default stop + operational dollar test. Pending my
+confirmation to redraft memo §3.

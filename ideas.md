@@ -189,6 +189,19 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   panel; "check set" / "hold-out set" for the 200 evaluation panels; our
   `labeled_test.csv` only as "the held-out extract scored once".
 
+- **Two phases** (S4, from my question): building (destructive tests for
+  labels — check set + training batches, drawn at random; one-off cost) vs
+  operating (model predicts every panel; only predictions within the
+  "unsure" band around the spec limit are destructively tested; savings
+  recur yearly). Dollar rule = one-off batch cost vs (yearly reduction in
+  QC tests × $4,400 × years in use). Before each batch, on the check set:
+  count panels the current model flags as unsure; bound the next gain by
+  the last batch's per-panel gain; scale to annual volume. Kestrel supplies
+  spec limit, volume, horizon. Side benefit: QC-tested unsure panels are
+  free new labels for retraining — clustered near the limit, so not a
+  substitute for the random check set. Training panels should be random:
+  our curve assumes random draws.
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →
