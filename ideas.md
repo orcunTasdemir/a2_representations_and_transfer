@@ -202,6 +202,15 @@ Source tags: S1 = session 1 (2026-10-20 → 11-01).
   substitute for the random check set. Training panels should be random:
   our curve assumes random draws.
 
+- **Retraining, concretely** (S4, from my question): periodic full retrain
+  of the same recipe (pre-trained encoder → fine-tune a fresh network on
+  all labels to date), not per-panel updates (noise; near-limit panels would
+  skew it) and not warm-start. Champion vs challenger on the random check
+  set before swapping. Refresh the encoder less often. Candidate memo §2
+  line: "Periodically re-run the same pipeline on all panels tested to date,
+  and keep the new version only if it scores at least as well on the check
+  set."
+
 ## For the limitations section
 
 - Nothing measured between 1,000 and 2,000 labels, or beyond. **[used →
