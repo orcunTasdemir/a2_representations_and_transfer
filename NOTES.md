@@ -619,3 +619,15 @@ defend every line. Zip adds expectations.md, part1_answers.md, memo.md,
 ai_process_note.pdf, plus unchanged starter/ and requirements.txt (so the
 grader only drops in data/); leaves out data/, .venv, drafts/, NOTES.md.
 Session 5 exported; zip built at ~/Desktop/tasdemir_orcun_a2.zip.
+
+## Submission built — 2026-11-05
+
+`~/Desktop/tasdemir_orcun_a2.zip` (10 MB), built with `git archive` from
+the pushed HEAD, so only committed files: memo.pdf/.md, ai_process_note.md/
+.pdf, expectations.md, part1_answers.md, requirements.txt, analysis/ (with
+outputs), sessions/ (README, renderer, sessions 0–5), starter/ (unchanged).
+No data/, .venv, drafts/, NOTES.md, caches.
+Verified: fresh unzip + data/ only, numpy/pandas-only Python 3.11 →
+`python analysis/run.py` exit 0; all 14 outputs byte-identical to the
+shipped ones; check_memo_numbers 107/107; memo.pdf identical to the repo.
+Left to me: upload to Canvas before 6:00 PM Central.
