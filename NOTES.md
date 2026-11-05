@@ -589,3 +589,20 @@ cost = largest run-to-run spread at 50–100 (checked by the check set). My
 "lower learning rate for n < 250" is untested — memo may only say "keep
 the reduced fine-tuning rate" (what was measured). Correction: fine-tuned
 2k at n=1,000 is 3.7 (agent briefly wrote 3.6 in chat). Pending my go.
+
+**Decided (mine), session 5:** fine-tune from the first batch in the staged
+plan (replaces "frozen early"); memo says "keep fine-tuning's reduced
+learning rate, which protects the pre-trained weights"; a lower rate is an
+untested limitation; the early-spread cost is mentioned, not an argument
+against. Asked for a technical-writing pass — A1's skill not found (not in
+~/.claude/skills or A1 transcripts); agent applied stated rules instead.
+Memo rewritten with numbered recommendation, defined terms, numbered
+budget steps, extension section; 107/107 numbers found.
+Render commands now:
+- memo (2 pp prose + Exhibit at 9.5pt): `EXTRA_CSS='html{line-height:1.22} p{margin:0 0 0.35em 0} li{margin:0.03em 0} ol,ul{margin:0.1em 0 0.3em 0} h3{margin:0.55em 0 0.2em 0} .head{margin-bottom:0.45em;padding-bottom:0.3em} @page{margin:0.5in 0.6in}' bash drafts/render_pdf.sh memo.md memo.pdf 9.5pt`
+- note (1 p at 9pt): `EXTRA_CSS='html{line-height:1.2} p{margin:0 0 0.3em 0} li{margin:0.02em 0} ul{margin:0.08em 0 0.25em 0} h1{margin:0 0 0.3em 0} h2{margin:0.5em 0 0.15em 0} @page{margin:0.45in 0.55in}' bash drafts/render_pdf.sh ai_process_note.md ai_process_note.pdf 9pt`
+
+### Open — remaining today
+1. Clean-copy run from a fresh clone; check_memo_numbers.
+2. Session-5 export (read for private content); sessions README row.
+3. Zip decisions and build.

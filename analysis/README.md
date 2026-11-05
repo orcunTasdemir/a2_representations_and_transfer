@@ -6,7 +6,7 @@ From the assignment folder (the one containing `data/` and `starter/`):
 
     python analysis/run.py
 
-About 65 seconds on a laptop CPU. Needs Python 3.10+ with numpy and pandas
+About 60–70 seconds on a laptop CPU. Needs Python 3.10+ with numpy and pandas
 only; versions used are pinned in `../requirements.txt`. It imports
 `starter/kestrel.py` unchanged and reads `data/` by relative path.
 
@@ -36,8 +36,11 @@ only; versions used are pinned in `../requirements.txt`. It imports
    250 → 500 → 1,000 training panels) with costs at $4,400 per panel, the
    dev error this study measured at each stage, the saving against the
    engineer's 2,000, the check set's precision, and the noise upper bound.
-8. The single test score (see below).
-9. **Check 3**: re-runs pre-training for seed 0 and the n=50, draw 0 cell,
+8. Optional extension 2: three encoders pre-trained on the first 2,000
+   traces (same recipe, once, outside the loop); frozen and fine-tuned rows
+   at the four label counts on dev, compared under Rule A.
+9. The single test score (see below).
+10. **Check 3**: re-runs pre-training for seed 0 and the n=50, draw 0 cell,
    and confirms the results are bit-identical.
 
 `labeled_test.csv` is read once, at the end, to score the single
@@ -66,4 +69,5 @@ Run after `run.py`. Lists any number in `../memo.md` that no file in
 | `part1_split.csv` | Raw → pre-trained gain: architecture alone vs pre-training |
 | `budget_stages.csv` | Memo Q3: staged plan — panels, tranche and cumulative cost, measured dev error per stage |
 | `test_score.txt` | The recommended pipeline's dev and test MSE / RMSE |
+| `extension2.md`, `extension2_runs.csv`, `extension2_comparisons.csv` | Optional extension 2: encoders pre-trained on the first 2,000 traces; frozen and fine-tuned rows vs the full pool and the random control |
 | `checks.txt` | Full console log: the three checks and the Part 1 numbers |
