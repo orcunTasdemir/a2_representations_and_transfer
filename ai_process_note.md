@@ -26,7 +26,7 @@ Agent: Claude Code (VS Code extension), one conversation across five working ses
 ## How I checked the numbers
 
 - **Three checks in `run.py`:** no panel appears in two files; pre-trained encoders rebuild hidden dev gauges at 0.013–0.015 against 2.225 for the random one and 1.042 for guessing; a re-run gives bit-identical encoder weights and scores.
-- **Every re-run after adding code** reproduced Exhibit 1 byte-for-byte (`cmp`/`git diff` on `exhibit1_runs.csv`).
+- **Every re-run after adding code** reproduced Exhibit 1 byte-for-byte; **a fresh clone** with only numpy and pandas installed and outputs wiped reproduced all 14 output files byte-for-byte in 55 s.
 - **`analysis/check_memo_numbers.py`** finds all 107 numbers in the memo in `analysis/outputs/`; I confirmed it flags three planted wrong numbers.
 - **Test extract:** the pipeline and its dev score (3.01) were committed and pushed before test was read, with my expectation. Result 2.87, within the 0.24 retraining spread; nothing else was scored on test.
 - **What I would not bet on:** pre-training's value at 50–100 labels, and the 80/20 split, which rests on one random network.

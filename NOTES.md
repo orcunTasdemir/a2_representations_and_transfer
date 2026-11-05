@@ -606,3 +606,10 @@ Render commands now:
 1. Clean-copy run from a fresh clone; check_memo_numbers.
 2. Session-5 export (read for private content); sessions README row.
 3. Zip decisions and build.
+
+**Clean-copy check (session 5): PASS.** Fresh `git clone` of 2d2a7c5 into
+scratch, `analysis/outputs/` wiped, Python 3.11 venv with only numpy 2.4.6
+and pandas 3.0.5, `python analysis/run.py` exit 0 in 55 s. All 14 output
+files byte-identical to the repo's; `checks.txt` identical apart from
+timings; `check_memo_numbers.py` 107/107. No absolute paths in analysis/ or
+starter/.
