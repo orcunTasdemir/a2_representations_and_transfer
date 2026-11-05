@@ -613,3 +613,9 @@ and pandas 3.0.5, `python analysis/run.py` exit 0 in 55 s. All 14 output
 files byte-identical to the repo's; `checks.txt` identical apart from
 timings; `check_memo_numbers.py` 107/107. No absolute paths in analysis/ or
 starter/.
+
+**Decided (mine):** wording of memo and process note approved — I can
+defend every line. Zip adds expectations.md, part1_answers.md, memo.md,
+ai_process_note.pdf, plus unchanged starter/ and requirements.txt (so the
+grader only drops in data/); leaves out data/, .venv, drafts/, NOTES.md.
+Session 5 exported; zip built at ~/Desktop/tasdemir_orcun_a2.zip.

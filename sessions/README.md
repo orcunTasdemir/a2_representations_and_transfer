@@ -19,12 +19,13 @@ session" (export, notes, commit). Times are US Central.
 | `a2-session-2` | Nov 1 → Nov 2 (ends 12:21 AM) | Part 1 Q2–Q4 read and settled (`part1_answers.md`); Part 1 numbers moved into `run.py`. |
 | `a2-session-3` | Nov 2 → Nov 3 | Memo decisions (n = 2,000 run, deployment choice, test pipeline fixed then scored once, staged budget); memo and process note written; sessions relabelled. |
 | `a2-session-4` | Nov 3 | Stopping rule made actionable (statistical stop + dollar test); build vs operate phases; retraining with champion/challenger and a random audit sample against the feedback loop; requirements audit and fixes; extension option chosen. |
+| `a2-session-5` | Nov 5 | Optional extension 2 (pre-training on the first 2,000 traces): expectations, run, reading; staged plan changed to fine-tune from the first batch; memo rewritten for clarity; clean-copy check; submission built. |
 
 Sessions 1–3 are one VS Code conversation (`0c849d9a…`) worked in three
 times, so each file is the whole conversation as it stood at that session's
 close: `a2-session-2.jsonl` contains `a2-session-1.jsonl` as its opening
-part, `a2-session-3.jsonl` contains `a2-session-2.jsonl`, and `a2-session-4.jsonl` contains `a2-session-3.jsonl`. Verified in
-Python as byte-exact prefixes (516 ⊂ 806 ⊂ 1,554 ⊂ 1,787 records). All three are
+part, `a2-session-3.jsonl` contains `a2-session-2.jsonl`, `a2-session-4.jsonl` contains `a2-session-3.jsonl`, and `a2-session-5.jsonl` contains `a2-session-4.jsonl`. Verified in
+Python as byte-exact prefixes (516 ⊂ 806 ⊂ 1,554 ⊂ 1,787 ⊂ 2,023 records). All three are
 submitted unedited rather than only the last, because each is what existed
 at the end of its session.
 
