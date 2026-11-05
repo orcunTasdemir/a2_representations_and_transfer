@@ -579,3 +579,13 @@ fine-tuned 2k − 20k: no at every n.
 All three expectations confirmed; key detail: at 50–100 labels the
 small-pool encoder is indistinguishable from a random one. Implication for
 the recommendation: pending, mine.
+
+Extension reading (mine): mention the less-training confound and my reason
+for design (a). Proposal (mine): with a small trace pool, fine-tune from the
+start — fine-tuned 2k ≈ 20k at every n; at 50–100 nothing is
+distinguishable, from 250 fine-tuned is clearly best. Agent: consistent with
+data; changes memo §3 ("frozen early" → "fine-tune from the first batch");
+cost = largest run-to-run spread at 50–100 (checked by the check set). My
+"lower learning rate for n < 250" is untested — memo may only say "keep
+the reduced fine-tuning rate" (what was measured). Correction: fine-tuned
+2k at n=1,000 is 3.7 (agent briefly wrote 3.6 in chat). Pending my go.
