@@ -25,7 +25,7 @@ Sessions 1–3 are one VS Code conversation (`0c849d9a…`) worked in three
 times, so each file is the whole conversation as it stood at that session's
 close: `a2-session-2.jsonl` contains `a2-session-1.jsonl` as its opening
 part, `a2-session-3.jsonl` contains `a2-session-2.jsonl`, `a2-session-4.jsonl` contains `a2-session-3.jsonl`, and `a2-session-5.jsonl` contains `a2-session-4.jsonl`. Verified in
-Python as byte-exact prefixes (516 ⊂ 806 ⊂ 1,554 ⊂ 1,787 ⊂ 2,023 records). All three are
+Python as byte-exact prefixes (516 ⊂ 806 ⊂ 1,554 ⊂ 1,787 ⊂ 2,023 records). All five are
 submitted unedited rather than only the last, because each is what existed
 at the end of its session.
 
