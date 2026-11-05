@@ -180,3 +180,19 @@ by less than the run-to-run spread on dev at n = 2,000 (SD 0.2; runs ranged
 **Result (added after the run).** Test MSE 2.87 vs dev 3.01: −0.14, smaller
 than the dev run-to-run SD (0.24) and inside the 2.67–3.31 range. As
 expected: slightly lower, not decisive.
+
+---
+
+## Addendum — extension option 2 (first 2,000 traces), written 2026-11-05 before it was run
+
+**Mine.**
+1. Frozen + ridge with encoders pre-trained on 2,000 traces will be worse
+   than with 20,000, since they were trained on less data.
+2. It will still beat the random-encoder control, but by a very small margin.
+3. The fine-tuned network will not be affected, since it can adjust itself.
+
+**Design (mine): option (a)** — first 2,000 traces, same 40 passes, as the
+brief words it. A new plant would run the standard recipe on what it has
+and would not know to match training steps to a 20,000-trace benchmark.
+Caveat to state: a worse result cannot separate less data from less
+training (10× fewer steps).

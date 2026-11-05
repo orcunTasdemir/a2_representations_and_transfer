@@ -562,3 +562,7 @@ the next-family budget). To do tomorrow (session 5).
 ## Session 5 — 2026-11-05 (deadline day, 6:00 PM Central). Extension option 2, then submission.
 
 Same conversation; export will be `a2-session-5`.
+
+Expectations for option 2 written first (`expectations.md`). **Decided
+(mine): design (a)** — first 2,000 traces, 40 passes, literal to the brief;
+confound (less data vs 10× fewer steps) goes in limitations.
