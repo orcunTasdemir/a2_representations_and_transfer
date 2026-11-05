@@ -556,3 +556,9 @@ the next-family budget). To do tomorrow (session 5).
    `tasdemir_orcun_a2.zip` — decide on drafts/, expectations.md,
    part1_answers.md.
 4. Deadline Thursday 2026-11-05, 6:00 PM Central.
+
+---
+
+## Session 5 — 2026-11-05 (deadline day, 6:00 PM Central). Extension option 2, then submission.
+
+Same conversation; export will be `a2-session-5`.
