@@ -196,3 +196,7 @@ brief words it. A new plant would run the standard recipe on what it has
 and would not know to match training steps to a 20,000-trace benchmark.
 Caveat to state: a worse result cannot separate less data from less
 training (10× fewer steps).
+
+**Result (added after the run).** (1) Worse at every n, readable from 250.
+(2) Beats random only from 250 (3.1, 3.8); indistinguishable at 50–100.
+(3) Fine-tuned unaffected at every n. All three as expected.

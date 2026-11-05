@@ -197,6 +197,81 @@ def part1_numbers(cells):
         f" of ridge's error")
 
 
+# ---- optional extension 2: how much unlabelled data does pre-training need? ----
+N_SMALL_POOL = 2000   # the first 2,000 traces, as the brief words it; same 40 passes
+
+
+def extension_small_pool(traces, encoders, rand_enc, Xtr, ytr, Xdev, ydev):
+    """Pre-train three encoders on the first 2,000 traces instead of 20,000.
+
+    Same seeds and protocol (40 passes, so 10x fewer steps than the full pool),
+    once each, outside the label loop. Re-runs the two rows that use an encoder,
+    at the same label counts and draws, and compares them with the full-pool
+    rows and the random-encoder control under Rule A.
+    """
+    pool = traces[:N_SMALL_POOL]
+    log(f"\nExtension 2 -- encoders pre-trained on the first {N_SMALL_POOL} traces")
+    small = []
+    for s in range(N_ENCODER_SEEDS):
+        t = time.time()
+        small.append(pretrain(pool, seed=s))
+        log(f"  encoder {s}: {time.time() - t:.1f} s;  masked reconstruction on dev"
+            f" {masked_reconstruction_mse(small[-1], Xdev)[0]:.3f}"
+            f" (full pool {masked_reconstruction_mse(encoders[s], Xdev)[0]:.3f})")
+    rows = []
+    for n in LABEL_COUNTS:
+        for r in range(N_REPLICATES):
+            idx = label_subset(n, r)
+            X, y = Xtr[idx], ytr[idx]
+            for e, enc in enumerate(small):
+                rows.append({"n": n, "draw": r, "method": "frozen_pretrained_small",
+                             "encoder": e,
+                             "dev_mse": frozen_ridge(enc, X, y, Xdev, ydev, seed=r)})
+            e = r % N_ENCODER_SEEDS
+            rows.append({"n": n, "draw": r, "method": "finetuned_small", "encoder": e,
+                         "dev_mse": supervised(X, y, Xdev, ydev, seed=r, encoder=small[e])})
+    runs = pd.DataFrame(rows)
+    runs.to_csv(OUT / "extension2_runs.csv", index=False)
+    return summarise(runs)
+
+
+EXT_LABELS = {"frozen_pretrained": "Frozen pre-trained + ridge, 20,000 traces",
+              "frozen_pretrained_small": "Frozen pre-trained + ridge, 2,000 traces",
+              "frozen_random": "Frozen random encoder + ridge (control)",
+              "finetuned": "Fine-tuned, 20,000 traces",
+              "finetuned_small": "Fine-tuned, 2,000 traces"}
+EXT_PAIRS = [("frozen_pretrained_small", "frozen_pretrained"),
+             ("frozen_pretrained_small", "frozen_random"),
+             ("finetuned_small", "finetuned")]
+
+
+def extension_report(cells, cells_small):
+    both = pd.concat([cells, cells_small])
+    m = both.set_index(["method", "n"])
+    header = "| Method | " + " | ".join(f"n = {n}" for n in LABEL_COUNTS) + " | Runs/cell |"
+    lines = [header, "|---|" + "---:|" * (len(LABEL_COUNTS) + 1)]
+    for k, label in EXT_LABELS.items():
+        vals = " | ".join(f"{m.loc[(k, n), 'mean']:.1f} ± {m.loc[(k, n), 'sd']:.1f}"
+                          f" ({m.loc[(k, n), 'rmse']:.1f})" for n in LABEL_COUNTS)
+        lines.append(f"| {label} | {vals} | {int(m.loc[(k, LABEL_COUNTS[0]), 'runs'])} |")
+    table = "\n".join(lines)
+    (OUT / "extension2.md").write_text(
+        "Extension 2. Dev MSE (MPa²), mean ± SD over runs (RMSE in MPa).\n\n" + table + "\n")
+    log("\n" + table)
+    rows = []
+    log("\nExtension 2 comparisons -- gap = mean(a) - mean(b); Rule A: |gap| > larger SD")
+    for a, b in EXT_PAIRS:
+        log(f"  {a} - {b}")
+        for n in LABEL_COUNTS:
+            A, B = m.loc[(a, n)], m.loc[(b, n)]
+            gap, larger = A["mean"] - B["mean"], max(A["sd"], B["sd"])
+            rows.append({"a": a, "b": b, "n": n, "gap": gap, "larger_sd": larger,
+                         "rule_a": abs(gap) > larger})
+            log(f"    n={n:<5} gap {gap:6.1f}  larger SD {larger:5.1f}"
+                f"  Rule A {'yes' if abs(gap) > larger else 'no'}")
+    pd.DataFrame(rows).to_csv(OUT / "extension2_comparisons.csv", index=False)
+
+
 # ---- memo question 3: the staged budget for the next panel family ----------
 COST_PER_PANEL = 4400       # $ per destructively tested panel (brief)
 ENGINEER_PLAN = 2000        # tests the engineer proposes
@@ -327,6 +402,9 @@ def main():
     log(f"  for reference: 750 tests from 250 -> 1000 cost ${750 * 4400:,}")
 
     budget_numbers(pd.concat([cells, cells_all]))
+
+    extension_report(cells, extension_small_pool(traces, encoders, rand_enc,
+                                                 Xtr, ytr, Xdev, ydev))
 
     # ---- the recommended pipeline, scored ONCE on test ---------------------
     # Fixed in NOTES.md before test was read: encoder 0, network seed 0, all

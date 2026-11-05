@@ -566,3 +566,16 @@ Same conversation; export will be `a2-session-5`.
 Expectations for option 2 written first (`expectations.md`). **Decided
 (mine): design (a)** — first 2,000 traces, 40 passes, literal to the brief;
 confound (less data vs 10× fewer steps) goes in limitations.
+
+### Extension 2 run (`outputs/extension2.md`, `extension2_comparisons.csv`, `checks.txt`)
+
+58 s total; earlier outputs byte-identical; checks PASS. Small-pool encoders:
+masked reconstruction 0.029–0.033 vs 0.013–0.015 full pool.
+Frozen 2k: 39.6 ± 10.6 / 22.9 ± 4.1 / 15.5 ± 1.2 / 12.1 ± 0.9.
+Fine-tuned 2k: 43.8 ± 15.9 / 23.0 ± 8.2 / 7.8 ± 1.5 / 3.7 ± 0.3.
+Rule A: frozen 2k − 20k: no, no, yes (4.7 vs 2.9), yes (3.3 vs 2.3);
+frozen 2k − random: no (0.4), no (−2.7), yes (−3.1 vs 1.2), yes (−3.8 vs 0.9);
+fine-tuned 2k − 20k: no at every n.
+All three expectations confirmed; key detail: at 50–100 labels the
+small-pool encoder is indistinguishable from a random one. Implication for
+the recommendation: pending, mine.

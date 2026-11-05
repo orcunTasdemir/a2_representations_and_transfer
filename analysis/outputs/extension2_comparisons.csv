@@ -1,0 +1,13 @@
+a,b,n,gap,larger_sd,rule_a
+frozen_pretrained_small,frozen_pretrained,50,6.063588464807594,11.965645955159752,False
+frozen_pretrained_small,frozen_pretrained,100,5.303593766685868,5.447584089855681,False
+frozen_pretrained_small,frozen_pretrained,250,4.662879780608664,2.922894843899226,True
+frozen_pretrained_small,frozen_pretrained,1000,3.260897514089395,2.285693417393082,True
+frozen_pretrained_small,frozen_random,50,0.4085531703610883,10.626886795727463,False
+frozen_pretrained_small,frozen_random,100,-2.675436457786951,4.11893634043559,False
+frozen_pretrained_small,frozen_random,250,-3.11015346679663,1.2378982353783698,True
+frozen_pretrained_small,frozen_random,1000,-3.8294271053196525,0.8512868601958415,True
+finetuned_small,finetuned,50,-1.3811137453935416,21.0792561959178,False
+finetuned_small,finetuned,100,1.7310381166231998,8.242329812251716,False
+finetuned_small,finetuned,250,0.5634563966157362,1.4904413297366996,False
+finetuned_small,finetuned,1000,0.051376779173784914,0.3028700647003118,False
